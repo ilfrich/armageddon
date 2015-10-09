@@ -1,0 +1,46 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+
+################ ESSENTIALS ################
+less
+jquery
+accounts-password
+aldeed:collection2
+matb33:collection-hooks
+tmeasday:publish-counts
+meteorhacks:aggregate
+iron:router
+momentjs:moment
+twbs:bootstrap
+browser-policy
+reactive-var
+http
+
+
+################ OPTIONAL / HELPFUL PACKAGES ################
+tsega:bootstrap3-datetimepicker
+mrt:bootstrap3-typeahead
+mrt:filesaver
+johdirr:meteor-git-rev
+#matteodem:gridster
+#peernohell:c3`
+#dburles:google-maps
+juliancwirko:s-alert
+fortawesome:fontawesome
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
