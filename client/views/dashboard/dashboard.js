@@ -68,7 +68,7 @@ Template.dashboard.helpers({
         Session.set('closest',closest);
 
         var d = Session.get('distance');
-        if(d < 1000) {
+        if(d < 2000) {
             //console.log('true');
             return true;
 
