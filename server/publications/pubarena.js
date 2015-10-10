@@ -7,3 +7,7 @@
 Meteor.publish('allArenas', function() {
     return dbArena.find();
 });
+
+Meteor.publish('arena', function(arenaId) {
+    return dbArena.find( {_id: arenaId } );
+});

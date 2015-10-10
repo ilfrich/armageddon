@@ -121,10 +121,7 @@ Template.sudoku.helpers({
     },
 
     currentGame: function() {
-        if (Template.instance().sudoku.get() == null) {
-            Template.instance().sudoku.set(dbSudoku.findOne({ _id: Session.get('sudokuId') }));
-        }
-        return Template.instance().sudoku.get();
+        return dbSudoku.findOne({ _id: Session.get('sudokuId') });
     }
 });
 
@@ -141,7 +138,7 @@ Template.sudoku.events({
 
     'click #number-select .number': function(e, template) {
         var number = $(e.target).closest('.number').text();
-        var game = template.sudoku.get();
+        var game = dbSudoku.findOne(Session.get('sudokuId'));
 
         var col = $('#number-select').attr('data-col');
         var row = $('#number-select').attr('data-row');
