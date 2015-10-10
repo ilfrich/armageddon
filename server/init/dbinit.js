@@ -27,7 +27,8 @@ Meteor.startup(function() {
             email: 'admin@noemail.noemail',
             profile: {
                 name: 'Admin Admin',
-                accessLevel: 2
+                accessLevel: 2,
+                picture:'trump.png'
             }
         }
     ];

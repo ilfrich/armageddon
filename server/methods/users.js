@@ -48,6 +48,14 @@ Meteor.methods({
         return Meteor.users.findOne({ 'profile.name': name }, { _id: 1, profile: 1, username: 1, emails: 1});
     },
 
+    fetchUserProfile:function(id){
+        console.log(id);
+        user = Meteor.users.findOne({_id:id});
+        console.log(user.profile);
+        return user.profile;
+
+    },
+
     fetchUserMap: function(userIdList) {
       var result = {};
       var user = null;
@@ -57,6 +65,10 @@ Meteor.methods({
           result[user._id] = user.profile.name;
       });
       return result;
+        // {
+        //   3jk56ewhjrb3: 'Peter',
+        //   j36h34kh5j3h5: 'Alex'
+        // }
     }
 
 });
