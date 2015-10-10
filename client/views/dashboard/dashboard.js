@@ -54,12 +54,35 @@ var getClosestLocation=function(){
 
     })
     console.log('you are closer to '+closest.name+' and are distant '+dist+' metres');
+    Session.set('distance',dist);
+    Session.set('closest',closest);
+
 
 
 }
 
 
 Template.dashboard.helpers({
+    minDistance:function(){
+        var d=Session.get('distance');
+        if(d<100){
+            return true;
+        }else{
+            return false;
+        }
+    },
+    distance:function(){
+        return Session.get('distance');
+    },
+    closest:function(){
+        return Session.get('closest');
+    },
+
+
+
+
+
+
     /*
     staticArrayHelper: function () {
         return ['a', 'b', 'c'];

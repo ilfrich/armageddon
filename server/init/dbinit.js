@@ -87,9 +87,12 @@ Meteor.startup(function() {
 
     ];
 
-    arenas.forEach(function(arena) {
-        dbArena.insert(arena);
-    });
+
+    if(dbArena.find().count()<1){
+        arenas.forEach(function(arena) {
+            dbArena.insert(arena);
+        });
+    }
 
 
 
