@@ -79,6 +79,7 @@ function validateQuadrant(game, rowFrom, rowTo, colFrom, colTo) {
 function checkGame(game) {
     $('.cell.error').removeClass('error');
 
+    // validate quadrants
     var quadrantValidation = [validateQuadrant(game, 1, 3, 1, 3),
                 validateQuadrant(game, 1, 3, 4, 6),
                 validateQuadrant(game, 1, 3, 7, 9),
@@ -96,17 +97,44 @@ function checkGame(game) {
     game.rows.forEach(function(row) {
         var alreadyUsed = [];
         row.fields.forEach(function(field) {
-            if (allCols[field.colNumber] === undefined) {
-                allCols[field.colNumber] = new Array();
-            }
-            if (allCols[field.colNumber].indexOf(field.value) == -1) {
+            if (field.fixed) {
+                // add to row
+                alreadyUsed.push(field.value);
+
+                // add to column storage
+                if (allCols[field.colNumber] === undefined) {
+                    allCols[field.colNumber] = new Array();
+                }
                 allCols[field.colNumber].push(field.value);
             }
-            if (field.value > 0) {
-                if (alreadyUsed.indexOf(field.value) == -1) {
-                    alreadyUsed.push(field.value);
+        });
+        row.fields.forEach(function(field) {
+            if (!field.fixed) {
+                if (field.value > 0) {
+                    if (alreadyUsed.indexOf(field.value) == -1) {
+                        alreadyUsed.push(field.value);
+                    }
+                    else {
+                        // handle invalid row
+                        var culprit = $('#game-area .cell[data-row="' + row.rowNumber + '"][data-col="' + field.colNumber + '"]');
+                        culprit.addClass('error').removeClass('selected');
+                    }
+
+                    // handle column storage
+                    if (allCols[field.colNumber] === undefined) {
+                        allCols[field.colNumber] = new Array();
+                    }
+                    if (allCols[field.colNumber].indexOf(field.value) == -1) {
+                        allCols[field.colNumber].push(field.value);
+                    }
+                    else {
+                        // handle invalid column value
+                        var culprit = $('#game-area .cell[data-row="' + row.rowNumber + '"][data-col="' + field.colNumber + '"]');
+                        culprit.addClass('error').removeClass('selected');
+                    }
                 }
             }
+
         });
         if (alreadyUsed.length != 9) {
             result = false;

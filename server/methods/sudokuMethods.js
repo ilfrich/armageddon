@@ -57,7 +57,7 @@ Meteor.methods({
                 };
             }
             // add points
-            currentRankObject.points += remaining;
+            currentRankObject.points += (180 - runtime);
 
             if (currentRankObject.gamesCount === undefined) {
                 currentRankObject.gamesCount = 1;
