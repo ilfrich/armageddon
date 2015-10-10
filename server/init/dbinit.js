@@ -78,10 +78,18 @@ Meteor.startup(function() {
         },
         {
             type: "Major Sports & Recreation Facility",
-            name: "Melbourne Cricket Ground (MCG",
+            name: "Melbourne Cricket Ground",
             location: {
                 latitude: -37.8194921618419,
                 longitude: 144.983402879078
+            }
+        },
+        {
+            type: "Code Shoppe",
+            name: "Meteor HQ",
+            location: {
+                latitude: 37.77468959999999,
+                longitude: -122.41546270000003
             }
         }
 
