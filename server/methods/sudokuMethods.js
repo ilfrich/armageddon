@@ -52,11 +52,13 @@ Meteor.methods({
             if (currentRankObject == null) {
                 currentRankObject = {
                     userId: userId,
-                    points: 0
+                    points: 0,
+                    gamesCount: 0
                 };
             }
             // add points
             currentRankObject.points += remaining;
+            currentRankObject.gamesCount++;
 
             // update arena ranking
             dbArena.update({ _id: arena._id }, { $pull: {
