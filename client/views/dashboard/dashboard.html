@@ -3,7 +3,7 @@
 		<h2>Dashboard</h2>
         {{#if minDistance}}
 			<button class="full-width btn btn-primary" data-arena-id="{{closest._id}}">
-				Login to {{closest.name}}
+				Enter {{closest.name}}
 			</button>
             {{else}}
             <button class="full-width btn btn-primary getToButton">
@@ -11,8 +11,6 @@
             </button>
         {{/if}}
         {{>mapControl}}
-
-
 
     </div>
 </template>

@@ -145,13 +145,18 @@ function getSudokuTemplates() {
 
 Meteor.methods({
 
-    createSudokuGame: function() {
+    createSudokuGame: function(arena, mode) {
         var templates = getSudokuTemplates();
-        var index = Math.round(Math.random() * (templates.length - 1));
+        var index = Math.round(Math.random() * (templates.length));
         var template = templates[index];
 
+        var entry = createSudokuEntry(template);
+        entry.players = [Meteor.userId()];
+        entry.started = new Date();
+        entry.arenaId = arena;
+        entry.mode = mode;
 
-        var id = dbSudoku.insert(createSudokuEntry(template));
+        var id = dbSudoku.insert(entry);
         return id;
     }
 
