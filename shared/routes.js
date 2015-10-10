@@ -146,7 +146,7 @@ Router.route('/arena/:arenaId/ranking', {
 
 Router.route('/arena/:arenaId/game/:gameType', {
     waitOn: function() {
-        return [];
+        return [Meteor.subscribe('allSudoku')];
     },
     action: function() {
         if (this.params.gameType == 'sudoku') {
