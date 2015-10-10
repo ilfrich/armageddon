@@ -47,6 +47,7 @@ Meteor.startup(function() {
         {
             type: "Code Shoppe",
             name: "Common Code",
+            icon:'townhall',
             location: {
                 latitude: -37.801098,
                 longitude: 144.99352369999997
@@ -55,6 +56,7 @@ Meteor.startup(function() {
         {
             type: "Retail",
             name: "Queen Victoria Market",
+            icon:'market',
             location: {
                 latitude: -37.8075002018073,
                 longitude: 144.957158515056
@@ -63,6 +65,7 @@ Meteor.startup(function() {
         {
             type: "Railway Station",
             name: "Flinders Street Railway Station",
+            icon:'train',
             location: {
                 latitude: -37.8179063007545,
                 longitude: 144.967064817875
@@ -71,6 +74,7 @@ Meteor.startup(function() {
         {
             type: "Public Buildings",
             name: "Melbourne Town Hall",
+            icon:'townhall',
             location: {
                 latitude: -37.8150754791411,
                 longitude: 144.966542722283
@@ -79,6 +83,7 @@ Meteor.startup(function() {
         {
             type: "Major Sports & Recreation Facility",
             name: "Melbourne Cricket Ground",
+            icon:'cricket',
             location: {
                 latitude: -37.8194921618419,
                 longitude: 144.983402879078
@@ -86,6 +91,7 @@ Meteor.startup(function() {
         },
         {
             type: "Code Shoppe",
+            icon:'townhall',
             name: "Meteor HQ",
             location: {
                 latitude: 37.77468959999999,
@@ -97,8 +103,11 @@ Meteor.startup(function() {
 
 
     if(dbArena.find().count()<1){
+        console.log('inserting');
         arenas.forEach(function(arena) {
-            dbArena.insert(arena);
+            dbArena.insert(arena,function(result){
+                console.log(result);
+            });
         });
     }
 

@@ -26,6 +26,9 @@ dbArena.attachSchema(new SimpleSchema({
     name: {
         type: String
     },
+    icon: {
+        type: String
+    },
     location: {
         type: GeoLocation
     }

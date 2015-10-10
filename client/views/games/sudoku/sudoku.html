@@ -1,10 +1,19 @@
 <template name="sudoku">
 	<div id="view-sudoku">
-		<h1>Sudoku</h1>
+        <div class="row" style="margin-top: 5px">
+            <div class="col-xs-6" style="height: 50px; text-align: left">
+                <img src="/images/background/play.png" style="height: 100%">
+            </div>
+            <div class="col-xs-6 timer" style="text-align: right; margin-top: 10px">
+                Timer: <span id="timer">{{displayTime}}</span>
+            </div>
 
-		<p>Timer: <span id="timer">{{displayTime}}</span></p>
+        </div>
 
-		<a href="/arena/{{arena._id}}">Go Back to Arena</a>
+
+
+
+		<!--a href="/arena/{{arena._id}}">Go Back to Arena</a-->
 
 		<div id="number-select" style="display: none;">
 			<div class="row">
@@ -31,5 +40,13 @@
 				{{/each}}
 			{{/with}}
 		</div>
+        <div class="row">
+            <a href="/arena/{{arena._id}}" class="col-xs-12" style="text-align: center; height: 40px;margin-top: 10px">
+                <img src="/images/background/arena.png" style="height: 100%">
+
+
+            </a>
+
+        </div>
 	</div>
 </template>

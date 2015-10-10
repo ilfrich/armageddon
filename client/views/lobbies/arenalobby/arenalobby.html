@@ -3,14 +3,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-6 lobbyImage">
-                    {IMAGE}
+                    <img src="/images/icons/{{arena.icon}}.svg">
                 </div>
                 <div class="col-xs-6 lobbyDescription">
                     {{arena.name}}<br/>
-					({{arena.type}})
                 </div>
             </div>
+
             <div class="row buttonRow">
+
+                    <a href="/arena/{{arena._id}}/game/sudoku" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play"><img src="/images/background/play.png">
+
+                    </a>
+
+
+
+            </div>
+
+            <!--div class="row buttonRow">
                 <div class="col-xs-12">
 					<button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Play Game <span class="caret"></span>
@@ -21,12 +31,12 @@
 						<li><a href="/arena/{{arena._id}}/play">PvP Sudoku</a></li>
 					</ul>
                 </div>
-            </div>
-            <div class="row buttonRow">
+            </div-->
+            <!--div class="row buttonRow">
                 <div class="col-xs-12">
                     <div class="button btn btn-primary"> CHALLENGE</div>
                 </div>
-            </div>
+            </div-->
             <div class="row kingRow">
                 <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
 
