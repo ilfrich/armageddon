@@ -20,7 +20,7 @@
 
     <div class="panel-body">
       {{#each sortedRanking arena}}
-        <div class="row tableRow line-separator">
+        <div class="row tableRow line-separator {{isActiveClassEquals currentUser._id userId}}">
           <div class="col-xs-1 right">{{incremented @index}}</div>
           <div class="col-xs-7">{{resolveUser this.userId}}</div>
           <div class="col-xs-2 right">{{this.points}}</div>
