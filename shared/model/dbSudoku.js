@@ -42,3 +42,14 @@ dbSudoku.attachSchema(new SimpleSchema({
         type: Date
     }
 }));
+
+if (Meteor.isServer) {
+    dbSudoku.allow({
+        insert: function() {
+            return true;
+        },
+        update: function() {
+            return true;
+        }
+    });
+}
