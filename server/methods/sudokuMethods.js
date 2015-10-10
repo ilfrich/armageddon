@@ -5,6 +5,8 @@
  *
  */
 
+MAX_SUDOKU_TIME = 300; // 5 minutes
+
 Meteor.methods({
 
     createSudokuGame: function (arena, mode) {
@@ -29,7 +31,7 @@ Meteor.methods({
             timeTaken: runtime
         }});
 
-        if ((180 - runtime) > 0) {
+        if ((MAX_SUDOKU_TIME - runtime) > 0) {
             // update arena ranking
             var userId = Meteor.userId();
             var arena = dbArena.findOne(game.arenaId);
@@ -57,7 +59,7 @@ Meteor.methods({
                 };
             }
             // add points
-            currentRankObject.points += (180 - runtime);
+            currentRankObject.points += (MAX_SUDOKU_TIME - runtime);
 
             if (currentRankObject.gamesCount === undefined) {
                 currentRankObject.gamesCount = 1;
