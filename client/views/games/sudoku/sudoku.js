@@ -5,6 +5,7 @@
  *
  */
 var runtime = new ReactiveVar(0);
+var maxTime = 180;
 
 
 function updateGame(game, row, col, newValue) {
@@ -16,8 +17,12 @@ function updateGame(game, row, col, newValue) {
             var newFields = [];
             r.fields.forEach(function(f) {
                 if (f.colNumber == col) {
-                    f.value = newValue;
-
+                    if (newValue == null) {
+                        delete f.value;
+                    }
+                    else {
+                        f.value = newValue;
+                    }
                 }
                 newFields.push(f);
             });
@@ -132,21 +137,50 @@ Template.sudoku.events({
         var col = $(cell).attr('data-col');
         var row = $(cell).attr('data-row');
 
-        $('#number-select').attr('data-col', col).attr('data-row', row).show();
+        if ($(cell).attr('data-fixed') === true) {
+            return;
+        }
+        else {
+            $('.cell.selected').removeClass('selected');
+            $(cell).addClass('selected');
+
+            $('#number-select').attr('data-col', col).attr('data-row', row).show();
+        }
+
     },
 
 
     'click #number-select .number': function(e, template) {
-        var number = $(e.target).closest('.number').text();
-        var game = dbSudoku.findOne(Session.get('sudokuId'));
 
         var col = $('#number-select').attr('data-col');
         var row = $('#number-select').attr('data-row');
+        var action = ($(e.target).closest('.number').attr('data-action'));
 
-        updateGame(game, row, col, number);
-        if (checkGame(game)) {
-            sAlert.success('Game Won!');
+        if (action == 'delete') {
+            var game = dbSudoku.findOne(Session.get('sudokuId'));
+
+            updateGame(game, row, col, null);
         }
+        else if (action == 'close') {
+            // do nothing, closing number pad below
+        }
+        else {
+            var number = $(e.target).closest('.number').text();
+            var game = dbSudoku.findOne(Session.get('sudokuId'));
+
+            updateGame(game, row, col, number);
+            if (checkGame(game)) {
+                var remainingTime = maxTime - runtime.get();
+                sAlert.success('Game Won!');
+                Meteor.call('sudokuWon', game, remainingTime, function(err, data) {
+                    setTimeout(function() {
+                        Router.go('/arena/' + game.arenaId);
+                    }, 1000)
+                });
+            }
+        }
+
+
         $('#number-select').hide();
     }
 });

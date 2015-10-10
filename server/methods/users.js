@@ -48,22 +48,15 @@ Meteor.methods({
         return Meteor.users.findOne({ 'profile.name': name }, { _id: 1, profile: 1, username: 1, emails: 1});
     },
 
-    /**
-     * Returns a user for a given ID. Only the profile, email and ID are returned
-     * @param id - the ID of the user to retrieve
-     * @returns {*} - a compact user object or null.
-     */
-    resolveUser: function(id) {
-        var user = Meteor.users.findOne(id);
-        if (user === undefined) {
-            return null;
-        }
-        else {
-            return {
-                profile: user.profile,
-                email: user.emails[0].address,
-                _id: user._id
-            };
-        }
+    fetchUserMap: function(userIdList) {
+      var result = {};
+      var user = null;
+
+      userIdList.forEach(function(id) {
+          user = Meteor.users.findOne(id);
+          result[user._id] = user.profile.name;
+      });
+      return result;
     }
+
 });

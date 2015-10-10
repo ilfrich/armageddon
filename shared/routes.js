@@ -138,13 +138,17 @@ Router.route('/arena/:arenaId/play', {
 
 Router.route('/arena/:arenaId/ranking', {
     waitOn: function() {
-        return [];
+        return [
+            Meteor.subscribe('arena', this.params.arenaId)
+        ];
     },
     action: function() {
         this.render('arenaranking');
     },
-    data: {
-
+    data: function() {
+        return {
+          arena: dbArena.findOne({ _id: this.params.arenaId })
+        }
     }
 });
 
