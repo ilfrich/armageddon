@@ -5,6 +5,86 @@
  *
  */
 
+Meteor.methods({
+
+    createSudokuGame: function (arena, mode) {
+        var templates = getSudokuTemplates();
+        var index = Math.floor(Math.random() * templates.length)
+        var template = templates[index];
+
+        var entry = createSudokuEntry(template);
+        entry.players = [Meteor.userId()];
+        entry.started = new Date();
+        entry.arenaId = arena;
+        entry.mode = mode;
+
+        var id = dbSudoku.insert(entry);
+        return id;
+    },
+
+
+    sudokuWon: function(game, remaining) {
+        // update game
+        dbSudoku.update({ _id: game._id }, { $set: {
+            timeTaken: remaining + 180
+        }});
+
+        if (remaining > 0) {
+            // update arena ranking
+            var userId = Meteor.userId();
+            var arena = dbArena.findOne(game.arenaId);
+
+            // fetch ranking
+            var ranking = arena.ranking;
+            if (ranking === undefined) {
+                ranking = [];
+            }
+
+            // find current rank object
+            var currentRankObject = null
+            ranking.forEach(function(rank) {
+                if (rank.userId == userId) {
+                    currentRankObject = rank;
+                }
+            });
+
+            // fall back if not ranked yet
+            if (currentRankObject == null) {
+                currentRankObject = {
+                    userId: userId,
+                    points: 0,
+                    gamesCount: 0
+                };
+            }
+            // add points
+            currentRankObject.points += remaining;
+
+            if (currentRankObject.gamesCount === undefined) {
+                currentRankObject.gamesCount = 1;
+            }
+            currentRankObject.gamesCount++;
+
+            // update arena ranking
+            dbArena.update({ _id: arena._id }, { $pull: {
+                ranking: {
+                    userId: userId
+                }
+            }});
+            dbArena.update({ _id: arena._id }, { $push: {
+                ranking: currentRankObject
+            }});
+
+        }
+    }
+
+});
+
+
+/*
+ * ######################################################################
+ * Supporting Functions
+ * ######################################################################
+ */
 
 function createSudokuEntry(data) {
     var entry = {
@@ -14,7 +94,7 @@ function createSudokuEntry(data) {
     };
 
     var rowNumber = 1;
-    data.rows.forEach(function(row) {
+    data.rows.forEach(function (row) {
 
         var currentRow = {
             rowNumber: rowNumber,
@@ -22,12 +102,14 @@ function createSudokuEntry(data) {
         }
 
         var colNumber = 1;
-        row.fields.forEach(function(field) {
+        row.fields.forEach(function (field) {
             var entry = {
-                colNumber: colNumber
+                colNumber: colNumber,
+                fixed: false
             };
             if (field !== null) {
                 entry.value = field;
+                entry.fixed = true;
             }
 
             currentRow.fields.push(entry)
@@ -105,6 +187,37 @@ function getSudokuTemplates() {
                     fields: [null, 9, 7, 5, null, 4, 3, 8, null]
                 }
             ]
+        },
+        {
+            rows: [
+                {
+                    fields: [1, 5, 8, 4, 7, 9, 3, 2, 6]
+                },
+                {
+                    fields: [9, 6, 7, 8, 3, 2, 5, 1, 4]
+                },
+                {
+                    fields: [2, 4, 3, 5, 6, 1, 7, 9, 8]
+                },
+                {
+                    fields: [8, 2, 9, 1, 5, 7, 4, 6, 3]
+                },
+                {
+                    fields: [3, 7, 6, 9, 2, 4, 8, 5, 1]
+                },
+                {
+                    fields: [5, 1, 4, 6, 8, 3, 2, 7, 9]
+                },
+                {
+                    fields: [7, 3, 1, 2, 4, 6, 9, 8, 5]
+                },
+                {
+                    fields: [4, 9, 5, 7, 1, 8, 6, 3, 2]
+                },
+                {
+                    fields: [6, 8, 2, 3, 9, 5, 1, 4, null]
+                }
+            ]
         }
     ]
 }
@@ -143,22 +256,4 @@ function getSudokuTemplates() {
  }
  */
 
-Meteor.methods({
-
-    createSudokuGame: function(arena, mode) {
-        var templates = getSudokuTemplates();
-        var index = Math.floor(Math.random() * templates.length)
-        var template = templates[index];
-
-        var entry = createSudokuEntry(template);
-        entry.players = [Meteor.userId()];
-        entry.started = new Date();
-        entry.arenaId = arena;
-        entry.mode = mode;
-
-        var id = dbSudoku.insert(entry);
-        return id;
-    }
-
-});
 

@@ -7,25 +7,11 @@
 Meteor.startup(function() {
 
 
-    /**
-     * These are examples only. To make these examples work, you would have to add the 'newField' field to the
-     * schema declaration for the example collection (shared/model/dbentries.js)
-     */
-    /*
-    // only modify records that don't have the field yet
-    dbEntries.update({ newField: { $exists: false }}, { $set: {
-        // update the field to a default value
-        newField: 'default value'
-    }}, { multi: true });
-    */
-
-    /*
-    // alternative method of iterating through affected elements and execute more logic to determine the new value
-    dbEntries.find({ newField: { $exists: false }}).forEach(function(affectedEntry) {
-        // some logic to determine the new value (using the data form the affected entry)
-        dbEntries.update(affectedEntry._id, { $set: {
-            newField: affectedEntry.category.join(', ')
-        }});
+    dbSudoku.find().forEach(function(su) {
+        // make sure all games have the fixed flag on the fields
+        if (su.rows[0].fields[0].fixed === undefined) {
+            dbSudoku.remove({ _id: su._id });
+        }
     });
-    */
+
 });

@@ -13,6 +13,9 @@ SudokuFieldSchema = new SimpleSchema({
     value: {
         type: Number,
         optional: true
+    },
+    fixed: {
+        type: Boolean
     }
 });
 
@@ -24,7 +27,6 @@ SudokuRowSchema = new SimpleSchema({
         type: [SudokuFieldSchema]
     }
 });
-
 dbSudoku.attachSchema(new SimpleSchema({
     players: {
         type: [String]
