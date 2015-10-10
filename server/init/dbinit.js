@@ -37,4 +37,22 @@ Meteor.startup(function() {
         }
     });
 
+
+    /**
+     * Import arenas
+     */
+    var arenas = [
+        {
+            name: 'Flinders Stations',
+            location: {
+                latitude: 123.55,
+                longitude: 121.55
+            }
+        }
+    ];
+
+    arenas.forEach(function(arena) {
+        dbArena.insert(arena);
+    });
+
 });
