@@ -53,7 +53,7 @@ var getClosestLocation=function(){
         }
 
     })
-    if (closest !== undefined) {
+    if (closest !== null) {
         console.log('you are closer to '+closest.name+' and are distant '+dist+' metres');
     }
     Session.set('distance',dist);

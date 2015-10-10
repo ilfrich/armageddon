@@ -2,11 +2,9 @@
     <div id="view-dashboard">
 		<h2>Dashboard</h2>
         {{#if minDistance}}
-            <div class="row">
-                <div class="col-xs-12 btn btn-primary">
-                    Login to {{closest.name}}
-                </div>
-            </div>
+			<button class="full-width btn btn-primary">
+				Login to {{closest.name}}
+			</button>
         {{/if}}
         {{>mapControl}}
 

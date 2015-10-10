@@ -38,8 +38,8 @@ Template.mapControl.helpers({
         var geo = userGeoLocation.get();
         if (geo == null) {
             geo = {
-                lat: -38,
-                lng: 144.991
+                lat: -37.8011882,
+                lng: 144.99335069999998
             }
         }
         if (GoogleMaps.loaded()) {
@@ -73,7 +73,7 @@ Template.mapControl.helpers({
                 }, {"featureType": "road", "elementType": "geometry", "stylers": [{"lightness": 57}]}]
             };
         }
-    },
+    }
 });
 
 
@@ -120,7 +120,7 @@ Template.mapControl.onCreated(function () {
                  content: contentString
                  });*/
 
-                console.log(document);
+                //console.log(document);
 
                 var markerOffer = new google.maps.Marker({
 
