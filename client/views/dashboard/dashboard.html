@@ -2,7 +2,7 @@
     <div id="view-dashboard">
 		<h2>Dashboard</h2>
         {{#if minDistance}}
-			<button class="full-width btn btn-primary">
+			<button class="full-width btn btn-primary" data-arena-id="{{closest._id}}">
 				Login to {{closest.name}}
 			</button>
         {{/if}}

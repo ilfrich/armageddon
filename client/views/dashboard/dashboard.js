@@ -84,7 +84,18 @@ Template.dashboard.helpers({
         return Session.get('closest');
     }
 });
-Template.dashboard.events({});
+
+
+Template.dashboard.events({
+    'click button[data-arena-id]': function(e) {
+        var id = $(e.target).closest('button').attr('data-arena-id');
+        Router.go('/arena/' + id);
+    }
+
+
+});
+
+
 Template.dashboard.rendered=function(){
     //console.log(userGeoLocation.get());
     var arenas=dbArena.find().fetch();
