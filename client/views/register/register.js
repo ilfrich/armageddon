@@ -29,6 +29,7 @@ Template.register.events({
                 accessLevel: 1
             }
         });
+        Router.go('/');
     },
 
 
