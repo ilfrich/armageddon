@@ -32,6 +32,40 @@ function updateGame(game, row, col, newValue) {
 }
 
 
+function checkGame(game) {
+    var result = true;
+
+
+    var allCols = [];
+
+    game.rows.forEach(function(row) {
+        var alreadyUsed = [];
+        row.fields.forEach(function(field) {
+            if (allCols[field.colNumber] === undefined) {
+                allCols[field.colNumber] = new Array();
+            }
+            if (allCols[field.colNumber].indexOf(field.value) == -1) {
+                allCols[field.colNumber].push(field.value);
+            }
+            if (field.value > 0) {
+                if (alreadyUsed.indexOf(field.value) == -1) {
+                    alreadyUsed.push(field.value);
+                }
+            }
+        });
+        if (alreadyUsed.length != 9) {
+            result = false;
+        }
+    });
+
+    allCols.forEach(function(col) {
+        
+    });
+
+    return result;
+}
+
+
 Template.sudoku.onCreated(function() {
     this.sudoku = new ReactiveVar();
 });
