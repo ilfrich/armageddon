@@ -98,6 +98,20 @@ Meteor.startup(function() {
 
     if(dbArena.find().count()<1){
         arenas.forEach(function(arena) {
+            arena.ranking = [];
+            arena.ranking.push(
+                { userId: Meteor.users.findOne({ username: 'test' })._id,
+                  points: 100,
+                  gamesCount: 1
+                }
+            );
+            arena.ranking.push(
+                { userId: Meteor.users.findOne({ username: 'admin' })._id,
+                  points: 1000,
+                  gamesCount: 2
+                }
+            );
+
             dbArena.insert(arena);
         });
     }
