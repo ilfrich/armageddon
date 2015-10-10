@@ -16,7 +16,7 @@ meteorhacks:aggregate
 iron:router
 momentjs:moment
 twbs:bootstrap
-browser-policy
+#browser-policy
 reactive-var
 http
 
@@ -28,7 +28,7 @@ mrt:filesaver
 johdirr:meteor-git-rev
 #matteodem:gridster
 #peernohell:c3`
-#dburles:google-maps
+dburles:google-maps
 juliancwirko:s-alert
 fortawesome:fontawesome
 standard-minifiers

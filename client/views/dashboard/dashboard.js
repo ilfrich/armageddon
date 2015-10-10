@@ -63,6 +63,7 @@ var getClosestLocation=function(){
 
 
 Template.dashboard.helpers({
+<<<<<<< HEAD
     minDistance:function(){
         var d=Session.get('distance');
         if(d<100){
@@ -104,11 +105,9 @@ Template.dashboard.helpers({
             ]
         }
     },
+=======
+>>>>>>> 30f476ed85785b993e50e5e8241ab3080eebbb46
 
-    dynamicListHelper: function (parentCategory) {
-        return dbCategories.find({parent: parentCategory});
-    }
-    */
 });
 Template.dashboard.events({});
 Template.dashboard.rendered=function(){
