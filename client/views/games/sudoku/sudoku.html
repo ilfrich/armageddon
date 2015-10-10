@@ -1,3 +1,13 @@
 <template name="sudoku">
-
+	<div id="view-sudoku">
+		{{#with currentGame}}
+			{{#each rows}}
+				<div class="row">
+					{{#each fields}}
+						<div class="col-xs-1 cell">{{this}}</div>
+					{{/each}}
+				</div>
+			{{/each}}
+		{{/with}}
+	</div>
 </template>
