@@ -1,15 +1,33 @@
 <template name="sudoku">
 	<div id="view-sudoku">
 		<h1>Sudoku</h1>
-		{{#with currentGame}}
-			k
-			{{#each rows}}
-				<div class="row">
-					{{#each this}}
-						<div class="col-xs-1 cell">{{this}}</div>
-					{{/each}}
-				</div>
-			{{/each}}
-		{{/with}}
+
+		<p>Timer: <span id="timer">{{displayTime}}</span></p>
+
+		<div id="number-select" style="display: none;">
+			<div class="row">
+				<div class="number col-xs-4">1</div>
+				<div class="number col-xs-4">2</div>
+				<div class="number col-xs-4">3</div>
+				<div class="number col-xs-4">4</div>
+				<div class="number col-xs-4">5</div>
+				<div class="number col-xs-4">6</div>
+				<div class="number col-xs-4">7</div>
+				<div class="number col-xs-4">8</div>
+				<div class="number col-xs-4">9</div>
+			</div>
+		</div>
+
+		<div id="game-area">
+			{{#with currentGame}}
+				{{#each rows}}
+					<div class="row" data-row="{{rowNumber}}">
+						{{#each fields}}
+							<div class="col-xs-1 cell" data-row="{{../rowNumber}}" data-col="{{colNumber}}">{{value}}</div>
+						{{/each}}
+					</div>
+				{{/each}}
+			{{/with}}
+		</div>
 	</div>
 </template>
