@@ -20,6 +20,9 @@ GeoLocation = new SimpleSchema({
 
 
 dbArena.attachSchema(new SimpleSchema({
+    type: {
+        type: String
+    },
     name: {
         type: String
     },
@@ -27,6 +30,3 @@ dbArena.attachSchema(new SimpleSchema({
         type: GeoLocation
     }
 }));
-
-
-
