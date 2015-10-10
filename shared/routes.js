@@ -111,13 +111,15 @@ Router.route('/login', function() {
 
 Router.route('/arena/:arenaId', {
     waitOn: function() {
-        return [];
+        return [Meteor.subscribe('arena', this.params.arenaId)];
     },
     action: function() {
         this.render('arenalobby');
     },
-    data: {
-
+    data: function() {
+        return {
+            arena: dbArena.findOne(this.params.arenaId)
+        }
     }
 });
 
@@ -151,15 +153,30 @@ Router.route('/arena/:arenaId/ranking', {
 
 Router.route('/arena/:arenaId/game/:gameType', {
     waitOn: function() {
-        return [Meteor.subscribe('allSudoku')];
+        return [
+            Meteor.subscribe('mySudoku'),
+            Meteor.subscribe('arena', this.params.arenaId)
+        ];
     },
     action: function() {
+        var self = this;
         if (this.params.gameType == 'sudoku') {
-            this.render('sudoku');
+            Meteor.call('createSudokuGame', this.params.arenaId, 'single', function(err, data) {
+                if (err) {
+                    sAlert.error('Ooops, the game could not be created.')
+                }
+                else {
+                    Session.set('sudokuId', data);
+                    self.render('sudoku');
+                }
+            });
         }
     },
-    data: {
-
+    data: function() {
+        return {
+            sudoku: dbSudoku.find({ _id: Session.get('sudokuId') }),
+            arena: dbArena.find({ _id: this.params.arenaId })
+        }
     }
 });
 

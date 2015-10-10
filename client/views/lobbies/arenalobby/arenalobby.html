@@ -6,12 +6,20 @@
                     {IMAGE}
                 </div>
                 <div class="col-xs-6 lobbyDescription">
-                    {NAME}
+                    {{arena.name}}<br/>
+					({{arena.type}})
                 </div>
             </div>
             <div class="row buttonRow">
                 <div class="col-xs-12">
-                    <button class="button btn btn-primary" data-action="play-game"> PLAY GAME</button>
+					<button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Play Game <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="/arena/{{arena._id}}/game/sudoku">Single Player Sudoku</a></li>
+						<li><a href="/arena/{{arena._id}}/play">Co-Op Sudoku</a></li>
+						<li><a href="/arena/{{arena._id}}/play">PvP Sudoku</a></li>
+					</ul>
                 </div>
             </div>
             <div class="row buttonRow">
@@ -23,7 +31,7 @@
                 <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
 
                     <div class="col-xs-6">
-                        <a href="/arena/{{arenaId}}/ranking" class="button btn btn-primary"> View Ranks</a>
+                        <a href="/arena/{{arena._id}}/ranking" class="button btn btn-primary"> View Ranks</a>
                     </div>
 
 

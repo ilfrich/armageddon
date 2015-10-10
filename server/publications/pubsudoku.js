@@ -7,3 +7,8 @@
 Meteor.publish('allSudoku', function() {
     return dbSudoku.find();
 });
+
+
+Meteor.publish('mySudoku', function() {
+    return dbSudoku.find({ players: this.userId });
+});

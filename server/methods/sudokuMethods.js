@@ -147,7 +147,7 @@ Meteor.methods({
 
     createSudokuGame: function(arena, mode) {
         var templates = getSudokuTemplates();
-        var index = Math.round(Math.random() * (templates.length));
+        var index = Math.floor(Math.random() * templates.length)
         var template = templates[index];
 
         var entry = createSudokuEntry(template);
