@@ -50,7 +50,15 @@ Meteor.startup(function() {
             location: {
                 latitude: -37.801098,
                 longitude: 144.99352369999997
-            }
+            },
+            // ranking: [
+            //     { userId: Meteor.users.findOne(){ username: user.username }._id,
+            //       points: 100
+            //     },
+            //     { userId: Meteor.users.findOne()[1]._id,
+            //       points: 10
+            //     }
+            // ]
         },
         {
             type: "Retail",
@@ -98,6 +106,18 @@ Meteor.startup(function() {
 
     if(dbArena.find().count()<1){
         arenas.forEach(function(arena) {
+            arena.ranking = [];
+            arena.ranking.push(
+                { userId: Meteor.users.findOne({ username: 'test' })._id,
+                  points: 100
+                }
+            );
+            arena.ranking.push(
+                { userId: Meteor.users.findOne({ username: 'admin' })._id,
+                  points: 1000
+                }
+            );
+
             dbArena.insert(arena);
         });
     }

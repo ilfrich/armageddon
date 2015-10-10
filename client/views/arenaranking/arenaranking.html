@@ -1,16 +1,24 @@
 <template name="arenaranking">
   <div id="view-arenaranking">
-    {{arena.name}}
+
     <div class="row kingRow">
       <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
     </div>
+
     <div class="row">
       <div class="col-xs-6"><h4>Username</h4></div>
       <div class="col-xs-6"><h4>Score</h4></div>
     </div>
-    <div class="row">
-      <div class="col-xs-6">John</div>
-      <div class="col-xs-6">100</div>
-    </div>
+
+    {{#each sortedRanking arena}}
+      <div class="row">
+        <div class="col-xs-6">{{resolveUser this.userId}}</div>
+        <div class="col-xs-6">{{this.points}}</div>
+      </div>
+    {{/each}}
+
   </div>
+
+
+  {{fetchUserMap arena}}
 </template>
