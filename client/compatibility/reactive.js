@@ -1,1 +1,1 @@
-location = new ReactiveVar();
+//location = new ReactiveVar();
