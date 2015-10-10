@@ -24,6 +24,9 @@ ArenaRanking = new SimpleSchema({
     },
     points: {
       type: Number
+    },
+    gamesCount: {
+      type: Number
     }
 });
 
