@@ -58,6 +58,10 @@ Meteor.methods({
             }
             // add points
             currentRankObject.points += remaining;
+
+            if (currentRankObject.gamesCount === undefined) {
+                currentRankObject.gamesCount = 1;
+            }
             currentRankObject.gamesCount++;
 
             // update arena ranking
