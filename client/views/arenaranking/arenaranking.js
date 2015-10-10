@@ -26,6 +26,11 @@ Template.arenaranking.helpers({
             userMap.set(data);
         });
     }
+  },
+
+  incremented: function (index) {
+    index++;
+    return index;
   }
 });
 

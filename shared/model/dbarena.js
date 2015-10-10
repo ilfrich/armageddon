@@ -24,6 +24,9 @@ ArenaRanking = new SimpleSchema({
     },
     points: {
       type: Number
+    },
+    gamesCount: {
+      type: Number
     }
 });
 
@@ -32,6 +35,9 @@ dbArena.attachSchema(new SimpleSchema({
         type: String
     },
     name: {
+        type: String
+    },
+    icon: {
         type: String
     },
     location: {

@@ -3,26 +3,59 @@
 
 #view-arenalobby{
   .lobbyDescription, .lobbyImage {
+    margin-top: 30px;
+
     text-align: center;
-    border:1px solid red;
     height: 80px;
+    img{
+      height: 60px;
+      margin-top: 10px;
+
+    }
 
   }
+  .lobbyDescription{
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 30px;
+    color: white;
+    padding-top: 10px;
+  }
+
+  .btn-play{
+    background: transparent;
+    border:3px solid white;
+    padding-top: 20px;
+    border-radius: 15px;
+
+  }
+
   .buttonRow {
     margin-top: 20px;
-    height: 80px;
+    height: 200px;
     text-align: left;
+
+    .btn{
+      height: 100%;
+    }
 
   }
 
   .kingRow {
     height: 60px;
     border: 1px solid blue;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+
+
   }
   .kingImage {
     text-align: center;
     border: 1px solid green;
   }
+
+
 
 
   button {
