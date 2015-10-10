@@ -137,6 +137,10 @@ Template.registerHelper('isNotEmpty', function(item) {
     }
 });
 
+Template.registerHelper('isActiveClass', function(bool) {
+    return bool ? ' active' : '';
+});
+
 /**
  * Uses a predefined format to display a date object. The invalidDefault is the fallback to display in case the date is
  * not valid (e.g. null, undefined, ...). It can be set to something like 'tba' or 'tbd'. If no default is provided n/a

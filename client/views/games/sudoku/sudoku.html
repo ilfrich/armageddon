@@ -28,7 +28,7 @@
 				{{#each rows}}
 					<div class="row" data-row="{{rowNumber}}">
 						{{#each fields}}
-							<div class="col-xs-1 cell" data-row="{{../rowNumber}}" data-col="{{colNumber}}">{{value}}</div>
+							<div class="col-xs-1 cell {{isActiveClass fixed}}" data-row="{{../rowNumber}}" data-col="{{colNumber}}" data-fixed="{{fixed}}">{{value}}</div>
 						{{/each}}
 					</div>
 				{{/each}}
