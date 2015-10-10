@@ -78,8 +78,7 @@ Router.route('/', {
         this.render('dashboard');
     },
     data: {
-        categories: dbCategories.find(),
-        newEntries: dbEntries.find()
+
     }
 });
 
