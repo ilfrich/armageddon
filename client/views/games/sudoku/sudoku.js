@@ -31,13 +31,41 @@ function updateGame(game, row, col, newValue) {
     }});
 }
 
+function validateQuadrant(game, rowFrom, rowTo, colFrom, colTo) {
+
+    var numbers = [];
+    game.rows.forEach(function(row) {
+        if (row.rowNumber >= rowFrom && row.rowNumber <= rowTo) {
+            row.fields.forEach(function(col) {
+                if (col.colNumber >= colFrom && col.colNumber <= colTo) {
+                    if (numbers.indexOf(col.value) == -1) {
+                        numbers.push(col.value);
+                    }
+                }
+            })
+        }
+    });
+
+    return (numbers.length == 9);
+}
+
 
 function checkGame(game) {
-    var result = true;
+    var result = (validateQuadrant(game, 1, 3, 1, 3) &&
+                validateQuadrant(game, 1, 3, 4, 6) &&
+                validateQuadrant(game, 1, 3, 7, 9) &&
+                validateQuadrant(game, 4, 6, 1, 3) &&
+                validateQuadrant(game, 4, 6, 4, 6) &&
+                validateQuadrant(game, 4, 6, 7, 9) &&
+                validateQuadrant(game, 7, 9, 1, 3) &&
+                validateQuadrant(game, 7, 9, 4, 6) &&
+                validateQuadrant(game, 7, 9, 7, 9));
+
 
 
     var allCols = [];
 
+    // validating rows
     game.rows.forEach(function(row) {
         var alreadyUsed = [];
         row.fields.forEach(function(field) {
@@ -58,8 +86,14 @@ function checkGame(game) {
         }
     });
 
+    // validating columns
+    if (allCols.length < 9) {
+        result = false;
+    }
     allCols.forEach(function(col) {
-        
+        if (col.length != 9) {
+            result = false;
+        }
     });
 
     return result;
