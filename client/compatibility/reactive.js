@@ -10,3 +10,11 @@ Tracker.autorun(function (computation) {
         //console.log(Geolocation.latLng());
     }
 });
+
+
+if (Meteor.isClient) {
+    Meteor.startup(function() {
+        GoogleMaps.load();
+    });
+}
+

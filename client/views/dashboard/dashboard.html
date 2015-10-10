@@ -1,6 +1,16 @@
 <template name="dashboard">
     <div id="view-dashboard">
 		<h2>Dashboard</h2>
-        {{>arenalobby}}
+        {{#if minDistance}}
+            <div class="row">
+                <div class="col-xs-12 btn btn-primary">
+                    Login to {{closest.name}}
+                </div>
+            </div>
+        {{/if}}
+        {{>mapControl}}
+
+
+
     </div>
 </template>

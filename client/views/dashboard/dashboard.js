@@ -54,38 +54,29 @@ var getClosestLocation=function(){
 
     })
     console.log('you are closer to '+closest.name+' and are distant '+dist+' metres');
+    Session.set('distance',dist);
+    Session.set('closest',closest);
+
 
 
 }
 
 
 Template.dashboard.helpers({
-    /*
-    staticArrayHelper: function () {
-        return ['a', 'b', 'c'];
-    },
-
-    staticObjectHelper: function () {
-        return {
-            a: 'b',
-            c: 'd',
-            e: [
-                {
-                    f: 'g',
-                    h: 'i'
-                },
-                {
-                    f: 'j',
-                    h: 'k'
-                }
-            ]
+    minDistance:function(){
+        var d=Session.get('distance');
+        if(d<100){
+            return true;
+        }else{
+            return false;
         }
     },
-
-    dynamicListHelper: function (parentCategory) {
-        return dbCategories.find({parent: parentCategory});
+    distance:function(){
+        return Session.get('distance');
+    },
+    closest:function(){
+        return Session.get('closest');
     }
-    */
 });
 Template.dashboard.events({});
 Template.dashboard.rendered=function(){
