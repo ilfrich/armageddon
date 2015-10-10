@@ -31,7 +31,7 @@ Template.dashboard.helpers({
             return d;
 
         }
-        var arenas=dbArena.find().fetch();
+        var arenas=dbArena.find();
         //console.log('arenas',arenas);
 
 
@@ -42,13 +42,11 @@ Template.dashboard.helpers({
 
         var me=userGeoLocation.get();
         //console.log(me);
-        if(me==null||me==undefined){
-            console.log('gps was undefined');
-            me={
-                lat:-38,
-                lng:144.991
-            }
+        if(me==null||me==undefined) {
+            //console.log('gps was undefined');
+            me = simulatedLocation.get();
         }
+
 
         var closest=null;
         arenas.forEach(function(test){
@@ -60,7 +58,7 @@ Template.dashboard.helpers({
 
         })
         if (closest !== null) {
-            console.log('you are closer to '+closest.name+' and are distant '+dist+' metres');
+            //console.log('you are closer to '+closest.name+' and are distant '+dist+' metres');
         }
         else {
             closest = dbArena.find().fetch()[0];
@@ -70,10 +68,13 @@ Template.dashboard.helpers({
         Session.set('closest',closest);
 
         var d = Session.get('distance');
-        if(d < 100) {
+        if(d < 1000) {
+            //console.log('true');
             return true;
+
         }
         else {
+            //console.log('false');
             return false;
         }
     },
@@ -90,6 +91,20 @@ Template.dashboard.events({
     'click button[data-arena-id]': function(e) {
         var id = $(e.target).closest('button').attr('data-arena-id');
         Router.go('/arena/' + id);
+    },
+
+    'click .getToButton':function(){
+        var closestArena=Session.get('closest');
+        var me=userGeoLocation.get();
+        //console.log(me);
+        if(me==null||me==undefined) {
+            //console.log('gps was undefined');
+            me = simulatedLocation.get();
+        }
+        var sLocation=me.lat + "," + me.lng;
+        var dLocation = closestArena.location.latitude + "," + closestArena.location.longitude;
+        window.open("maps://maps.google.com/maps?saddr="+sLocation+"&daddr=" + dLocation + "&amp;ll=");
+
     }
 
 
