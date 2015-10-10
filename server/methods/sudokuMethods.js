@@ -154,6 +154,6 @@ Meteor.methods({
         var id = dbSudoku.insert(createSudokuEntry(template));
         return id;
     }
-    
+
 });
 

@@ -63,7 +63,6 @@ var getClosestLocation=function(){
 
 
 Template.dashboard.helpers({
-<<<<<<< HEAD
     minDistance:function(){
         var d=Session.get('distance');
         if(d<100){
@@ -77,37 +76,7 @@ Template.dashboard.helpers({
     },
     closest:function(){
         return Session.get('closest');
-    },
-
-
-
-
-
-
-    /*
-    staticArrayHelper: function () {
-        return ['a', 'b', 'c'];
-    },
-
-    staticObjectHelper: function () {
-        return {
-            a: 'b',
-            c: 'd',
-            e: [
-                {
-                    f: 'g',
-                    h: 'i'
-                },
-                {
-                    f: 'j',
-                    h: 'k'
-                }
-            ]
-        }
-    },
-=======
->>>>>>> 30f476ed85785b993e50e5e8241ab3080eebbb46
-
+    }
 });
 Template.dashboard.events({});
 Template.dashboard.rendered=function(){
