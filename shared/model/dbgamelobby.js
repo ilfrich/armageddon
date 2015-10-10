@@ -11,7 +11,6 @@ dbGameLobby.attachSchema(new SimpleSchema( {
     arenaId: {
       type: String
     },
-
     users: {
       type: [String]
     }

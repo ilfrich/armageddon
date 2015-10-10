@@ -9,7 +9,7 @@ MAX_SUDOKU_TIME = 300; // 5 minutes
 
 Meteor.methods({
 
-    createSudokuGame: function (arena, mode) {
+    createSudokuGame: function (arenaId, mode) {
         var templates = getSudokuTemplates();
         var index = Math.floor(Math.random() * templates.length)
         var template = templates[index];
@@ -17,7 +17,7 @@ Meteor.methods({
         var entry = createSudokuEntry(template);
         entry.players = [Meteor.userId()];
         entry.started = new Date();
-        entry.arenaId = arena;
+        entry.arenaId = arenaId;
         entry.mode = mode;
 
         var id = dbSudoku.insert(entry);

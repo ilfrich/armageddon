@@ -39,6 +39,8 @@ Meteor.methods({
         return result;
     },
 
+
+
     /**
      * Returns a user that matches the given name. Only the id, username, emails and the profile are returned.
      * @param name - the profile name of the user
@@ -49,9 +51,7 @@ Meteor.methods({
     },
 
     fetchUserProfile:function(id){
-        console.log(id);
         user = Meteor.users.findOne({_id:id});
-        console.log(user.profile);
         return user.profile;
 
     },
@@ -69,6 +69,9 @@ Meteor.methods({
         //   3jk56ewhjrb3: 'Peter',
         //   j36h34kh5j3h5: 'Alex'
         // }
-    }
+    },
 
+    updateProfile: function(userId, profile) {
+        Meteor.users.update(userId, { $set: { profile: profile }});
+    }
 });

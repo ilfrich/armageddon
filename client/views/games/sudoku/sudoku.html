@@ -7,13 +7,7 @@
             <div class="col-xs-6 timer" style="text-align: right; margin-top: 10px">
                 Timer: <span id="timer">{{displayTime}}</span>
             </div>
-
         </div>
-
-
-
-
-		<!--a href="/arena/{{arena._id}}">Go Back to Arena</a-->
 
 		<div id="number-select" style="display: none;">
 			<div class="row">
@@ -43,13 +37,18 @@
 				{{/each}}
 			{{/with}}
 		</div>
+
+		{{#if multiplayer}}
+			<div class="row" id="multiplayer">
+				<div class="col-xs-12">
+					You are playing with: {{otherPlayer.name}}
+				</div>
+			</div>
+		{{/if}}
         <div class="row" id="back-button">
             <a href="/arena/{{arena._id}}" class="col-xs-12" style="text-align: center; height: 40px;margin-top: 10px">
                 <img src="/images/background/arena.png" style="height: 100%">
-
-
             </a>
-
         </div>
 	</div>
 </template>

@@ -8,6 +8,8 @@ var getClosestLocation=function(){
 
 }
 
+MAX_DISTANCE = 3000;
+
 
 Template.dashboard.helpers({
     minDistance:function() {
@@ -68,7 +70,7 @@ Template.dashboard.helpers({
         Session.set('closest',closest);
 
         var d = Session.get('distance');
-        if(d < 2000) {
+        if(d < MAX_DISTANCE) {
             //console.log('true');
             return true;
 

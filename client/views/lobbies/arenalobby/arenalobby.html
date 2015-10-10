@@ -11,71 +11,45 @@
             </div>
 
             <div class="row buttonRow">
-                    <a href="/arena/{{arena._id}}/game/sudoku" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play"><img src="/images/background/play.png">
-                        <div class="col-xs-12 playText" style="text-align: center" >
-                            <span class="fa fa-user"></span>
-                        </div>
-
-                    </a>
+				<div class="col-xs-12">
+					<span class="fa fa-user"></span>
+					<a href="/arena/{{arena._id}}/game/sudoku" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play">
+						<img src="/images/background/play.png">
+					</a>
+				</div>
             </div>
 
             <div class="row buttonRow">
-
-                    <a href="/arena/{{arena._id}}/play" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play"><img src="/images/background/play.png">
-                        <div class="col-xs-12 playText" style="text-align: center" >
-                              <span class="fa fa-users"></span>
-                        </div>
-
-                    </a>
+				<div class="col-xs-12">
+					<span class="fa fa-users"></span>
+					<a href="/arena/{{arena._id}}/play" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play">
+						<img src="/images/background/play.png">
+					</a>
+				</div>
             </div>
 
-
-            <!--div class="row buttonRow">
-                <div class="col-xs-12">
-					<button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Play Game <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="/arena/{{arena._id}}/game/sudoku">Single Player Sudoku</a></li>
-						<li><a href="/arena/{{arena._id}}/play">Co-Op Sudoku</a></li>
-						<li><a href="/arena/{{arena._id}}/play">PvP Sudoku</a></li>
-					</ul>
-                </div>
-            </div-->
-            <!--div class="row buttonRow">
-                <div class="col-xs-12">
-                    <div class="button btn btn-primary"> CHALLENGE</div>
-                </div>
-            </div-->
             <div class="row kingRow">
                 <a href="/arena/{{arena._id}}/ranking" class="col-xs-4" style="text-align: center;height: 100%">
                     <img src="/images/icons/crown33.png" style="height: 60%"><br>View Ranks
-
                 </a>
                 <div class="col-xs-4 kingImage"><img class='profilePic' src="/images/profiles/{{king.picture}}">
-                </div>
+				</div>
 
-
-
-
-                    <div class="col-xs-4">
-                        <p>{{king.name}}</p>
-                        <div class="col-xs-6">
-                            Games
-                        </div>
-                        <div class="col-xs-6">
-                            Score
-                        </div>
-                        <div class="col-xs-6">
-                            {{highScore.gamesCount}}
-                        </div>
-                        <div class="col-xs-6">
-                            {{highScore.points}}
-                        </div>
-
-                    </div>
-
-
+				<div class="col-xs-4">
+					<p>{{king.name}}</p>
+					<div class="col-xs-6">
+						Games
+					</div>
+					<div class="col-xs-6">
+						Score
+					</div>
+					<div class="col-xs-6">
+						{{highScore.gamesCount}}
+					</div>
+					<div class="col-xs-6">
+						{{highScore.points}}
+					</div>
+				</div>
             </div>
         </div>
     </div>

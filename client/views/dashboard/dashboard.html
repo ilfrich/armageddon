@@ -1,7 +1,7 @@
 <template name="dashboard">
     <div id="view-dashboard">
         {{#if minDistance}}
-			<button class="full-width btn btn-primary" data-arena-id="{{closest._id}}">
+			<button id="enter-button" class="full-width btn btn-primary" data-arena-id="{{closest._id}}">
 				Enter {{closest.name}}
 			</button>
             {{else}}
