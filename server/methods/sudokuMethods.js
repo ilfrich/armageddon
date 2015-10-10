@@ -23,13 +23,13 @@ Meteor.methods({
     },
 
 
-    sudokuWon: function(game, remaining) {
+    sudokuWon: function(game, runtime) {
         // update game
         dbSudoku.update({ _id: game._id }, { $set: {
-            timeTaken: remaining + 180
+            timeTaken: runtime
         }});
 
-        if (remaining > 0) {
+        if ((180 - runtime) > 0) {
             // update arena ranking
             var userId = Meteor.userId();
             var arena = dbArena.findOne(game.arenaId);
@@ -73,7 +73,6 @@ Meteor.methods({
             dbArena.update({ _id: arena._id }, { $push: {
                 ranking: currentRankObject
             }});
-
         }
     }
 
