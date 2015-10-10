@@ -20,7 +20,10 @@ Router.configure({
  * the actual route.
  */
 Router.onBeforeAction(function() {
-    if (! Meteor.userId()) {
+    if (Router.current().route._path == '/register') {
+        this.next();
+    }
+    else if (! Meteor.userId()) {
         this.render('login');
     }
     else {
