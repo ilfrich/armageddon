@@ -177,7 +177,7 @@ Router.route('/arena/:arenaId/game/:gameType', {
     data: function() {
         return {
             sudoku: dbSudoku.find({ _id: Session.get('sudokuId') }),
-            arena: dbArena.find({ _id: this.params.arenaId })
+            arena: dbArena.findOne({ _id: this.params.arenaId })
         }
     }
 });
