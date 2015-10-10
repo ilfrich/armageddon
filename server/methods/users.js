@@ -49,17 +49,13 @@ Meteor.methods({
     },
 
     fetchUserMap: function(userIdList) {
-      var result = new Array();
+      var result = {};
       var user = null;
 
       userIdList.forEach(function(id) {
           user = Meteor.users.findOne(id);
-          result.push({
-            id: user._id,
-            name: user.profile.name
-          });
+          result[user._id] = user.profile.name;
       });
-      console.log(result);
       return result;
     }
 

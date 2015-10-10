@@ -3,7 +3,6 @@ var userMap = new ReactiveVar([]);
 Template.arenaranking.helpers({
   sortedRanking: function(arena) {
     var arenaRanking = arena.ranking;
-    console.log(arenaRanking);
     arenaRanking.sort(function(a, b) {
         return b.points - a.points;
     });
@@ -11,6 +10,7 @@ Template.arenaranking.helpers({
   },
 
   resolveUser: function(userId) {
+    console.log(userMap.get()[userId]);
     return userMap.get()[userId];
 
   },
@@ -24,7 +24,6 @@ Template.arenaranking.helpers({
 
         Meteor.call('fetchUserMap', userlist, function(err, data) {
             userMap.set(data);
-            console.log(data);
         });
     }
   }
