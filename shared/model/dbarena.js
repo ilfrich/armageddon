@@ -18,6 +18,14 @@ GeoLocation = new SimpleSchema({
     }
 });
 
+ArenaRanking = new SimpleSchema({
+    userId: {
+      type: String
+    },
+    points: {
+      type: Number
+    }
+});
 
 dbArena.attachSchema(new SimpleSchema({
     type: {
@@ -28,5 +36,10 @@ dbArena.attachSchema(new SimpleSchema({
     },
     location: {
         type: GeoLocation
+    },
+    ranking: {
+        type: [ArenaRanking],
+        optional: true
     }
+
 }));
