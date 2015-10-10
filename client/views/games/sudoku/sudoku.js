@@ -186,6 +186,18 @@ Template.sudoku.events({
         var cell = $(e.target).closest('.cell');
         var col = $(cell).attr('data-col');
         var row = $(cell).attr('data-row');
+        
+
+        if ($(cell).attr('data-fixed') == 'true') {
+            // fixed value, don't do anything
+            $('#number-select').hide();
+            $('.cell.selected').removeClass('selected');
+        }
+        else {
+            // highlight selected cell and show number pad
+            $('#number-select').attr('data-col', col).attr('data-row', row).show();
+            $(cell).addClass('selected').removeClass('observe');
+        }
 
         // highlight cells
         var cellNumber = $(cell).text().trim();
@@ -196,20 +208,6 @@ Template.sudoku.events({
                     $(item).addClass('observe');
                 }
             });
-        }
-
-        $('.cell.selected').removeClass('selected');
-        if ($(cell).attr('data-fixed') == 'true') {
-            // fixed value, don't do anything
-            $('#number-select').hide();
-            return;
-        }
-        else {
-            // highlight selected cell and show number pad
-            $('.cell.selected').removeClass('selected');
-            $(cell).addClass('selected').removeClass('observe');
-
-            $('#number-select').attr('data-col', col).attr('data-row', row).show();
         }
     },
 
