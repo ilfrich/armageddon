@@ -102,6 +102,7 @@ function checkGame(game) {
 
 Template.sudoku.onCreated(function() {
     this.sudoku = new ReactiveVar();
+    runtime.set(0);
 });
 
 Template.sudoku.helpers({
@@ -121,9 +122,9 @@ Template.sudoku.helpers({
 
     currentGame: function() {
         if (Template.instance().sudoku.get() == null) {
-            Template.instance().sudoku.set(dbSudoku.find().fetch()[0]);
+            Template.instance().sudoku.set(dbSudoku.findOne({ _id: Session.get('sudokuId') }));
         }
-        return dbSudoku.find().fetch()[0];
+        return Template.instance().sudoku.get();
     }
 });
 

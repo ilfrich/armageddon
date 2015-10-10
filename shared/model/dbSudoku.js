@@ -40,6 +40,9 @@ dbSudoku.attachSchema(new SimpleSchema({
     },
     started: {
         type: Date
+    },
+    arenaId: {
+        type: String
     }
 }));
 
