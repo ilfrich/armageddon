@@ -4,6 +4,7 @@
  * subscription might be more comfortable.
  */
 Meteor.startup(function() {
+    Meteor.subscribe('allArenas');
 
     // always subscribe to allCategories - if you remove the comment, you won't need to subscribe to this in the route.
     //Meteor.subscribe('allCategories');
