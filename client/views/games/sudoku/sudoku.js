@@ -6,6 +6,6 @@
  */
 Template.sudoku.helpers({
     currentGame: function() {
-        return dbSudoku.findOne();
+        return dbSudoku.find().fetch()[0];
     }
 });
