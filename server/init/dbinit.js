@@ -666,6 +666,9 @@ Meteor.startup(function() {
               longitude: 144.983402879078
             }
         },
+<<<<<<< HEAD
+
+=======
         {
             type: "Outdoor Recreation Facility (Zoo,
               longitude: Golf Course",
@@ -675,6 +678,7 @@ Meteor.startup(function() {
               longitude: 144.951371205938
             }
         },
+>>>>>>> 5ca6568a019f1f5b34912846015cd417446aa59a
         {
             type: "Office",
             name: "Australian Broadcasting Corporation (ABC",
@@ -1003,6 +1007,9 @@ Meteor.startup(function() {
               longitude: 144.951378883631
             }
         },
+<<<<<<< HEAD
+
+=======
         {
             type: "Outdoor Recreation Facility (Zoo,
               longitude: Golf Course",
@@ -1012,6 +1019,7 @@ Meteor.startup(function() {
               longitude: 144.936833674975
             }
         },
+>>>>>>> 5ca6568a019f1f5b34912846015cd417446aa59a
         {
             type: "Major Sports & Recreation Facility",
             name: "Rod Laver Arena",
@@ -1420,6 +1428,9 @@ Meteor.startup(function() {
               longitude: 144.981786260765
             }
         },
+<<<<<<< HEAD
+
+=======
         {
             type: "Outdoor Recreation Facility (Zoo,
               longitude: Golf Course",
@@ -1429,6 +1440,7 @@ Meteor.startup(function() {
               longitude: 144.915607065132
             }
         },
+>>>>>>> 5ca6568a019f1f5b34912846015cd417446aa59a
         {
             type: "Informal Outdoor Facility (Park/Garden/Reserve",
             name: "Darling Square",
@@ -1454,6 +1466,8 @@ Meteor.startup(function() {
             }
         },
         {
+<<<<<<< HEAD
+=======
             type: "Outdoor Recreation Facility (Zoo,
               longitude: Golf Course",
             name: "Melbourne Showgrounds",
@@ -1463,6 +1477,7 @@ Meteor.startup(function() {
             }
         },
         {
+>>>>>>> 5ca6568a019f1f5b34912846015cd417446aa59a
             type: "Primary Schools",
             name: "North Melbourne Primary School",
             location: {
@@ -1590,6 +1605,9 @@ Meteor.startup(function() {
               longitude: 144.930613255612
             }
         },
+<<<<<<< HEAD
+
+=======
         {
             type: "Retail/Office/Carpark",
             name: "Melbourne Wholesale Fruit,
@@ -1599,6 +1617,7 @@ Meteor.startup(function() {
               longitude: 144.923287444259
             }
         },
+>>>>>>> 5ca6568a019f1f5b34912846015cd417446aa59a
         {
             type: "Art Gallery/Museum",
             name: "Fire Services Museum Victoria",
@@ -1995,8 +2014,14 @@ Meteor.startup(function() {
             type: "Retail/Office/Carpark",
             name: "ANZ 'Gothic' Bank",
             location: {
+<<<<<<< HEAD
+                latitude: -37.8161580666029,
+                longitude: 144.961673719242
+            }
+=======
               latitude: -37.8161580666029,
               longitude: 144.961673719242"
+>>>>>>> 5ca6568a019f1f5b34912846015cd417446aa59a
         }
     ];
 
