@@ -29,7 +29,7 @@ var matchIcon = function (item) {
 
 
     }
-
+da
 
 };
 
@@ -37,15 +37,12 @@ Template.mapControl.helpers({
     mapOptions: function () {
         var geo = userGeoLocation.get();
         if (geo == null) {
-            geo = {
-                lat: -37.8011882,
-                lng: 144.99335069999998
-            }
+            geo = simulatedLocation.get();
         }
         if (GoogleMaps.loaded()) {
             return {
                 center: new google.maps.LatLng(geo.lat, geo.lng),
-                zoom: 10,
+                zoom: 12,
                 styles: [{
                     "featureType": "landscape",
                     "elementType": "labels",
@@ -95,34 +92,9 @@ Template.mapControl.onCreated(function () {
         dbArena.find().observe({
             added: function (document) {
 
-                // Create a marker for this document
-
-                //   var icon=matchIcon(document.category);
-                /*console.log(document.category);
-                 console.log(do)
-                 console.log(icon);
-                 */
-                //           var image = 'images/markers/azure.png';
 
 
-                /*   var contentString = '<div id="content">'+
-                 '<div id="siteNotice">'+
-                 '</div>'+
-                 '<h1 id="firstHeading" class="firstHeading"><i class="fa fa-'+icon+'" ></i><span style="margin-left:20px">'+document.item+'</span>    </h1>'+
-                 '<div id="bodyContent">'+
-                 '<p><b> Information</b> about this <b>'+document.item+'</b></p>'+
-                 '<p>Needer <b>'+document.needUsername+' </b> matched <b>'+document.offerUsername+'</b></p>'+
-
-                 '<p>Attribution: Match, <a href="">'+document.date+'</p>'+
-                 '</div>'+
-                 '</div>';
-                 var infowindow = new google.maps.InfoWindow({
-                 content: contentString
-                 });*/
-
-                //console.log(document);
-
-                var markerOffer = new google.maps.Marker({
+                var arenaMarker = new google.maps.Marker({
 
                     animation: google.maps.Animation.DROP,
                     position: new google.maps.LatLng(document.location.latitude, document.location.longitude),
@@ -133,9 +105,53 @@ Template.mapControl.onCreated(function () {
                     id: document._id, visible: true
                 });
 
+                var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading"><i class="fa fa-train" ></i><span style="margin-left:20px">'+document.name+'</span>    </h1>'+
+                    '<div id="bodyContent">'+
+                    '<p><b> Information</b>:<b>'+document.type+'</b></p>'+
+                    '<p><b> Current King</b>:<b>John The hunter</b></p>'+
+                    '</div>'+
+                    '</div>';
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+
+
+
+
+                google.maps.event.addListener(arenaMarker, 'click', function() {
+                    infowindow.open(map.instance,arenaMarker);
+                });
+
+
 
             }
         });
+
+        myloc=userGeoLocation.get();
+        if(myloc==null||myloc==undefined){
+            myloc=simulatedLocation.get();
+        }
+
+        var meMarker = new google.maps.Marker({
+
+            animation: google.maps.Animation.DROP,
+            position: new google.maps.LatLng(myloc.lat, myloc.lng),
+            map: map.instance,
+            icon:'images/markers/flag.png',
+            title: document.name,
+            // We store the document _id on the marker in order
+            // to update the document within the 'dragend' event belo¸¸w.
+            id: document._id, visible: true
+        });
+        google.maps.event.addListener(meMarker, 'click', function() {
+            infowindow.open(map.instance,meMarker);
+        });
+
+
 
 
     });

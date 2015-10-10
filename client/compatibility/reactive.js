@@ -1,5 +1,6 @@
 //location = new ReactiveVar();
 
+simulatedLocation=new ReactiveVar({lat:-37.802,lng:144.9673});
 userGeoLocation = new ReactiveVar(null);
 
 Tracker.autorun(function (computation) {
@@ -8,7 +9,7 @@ Tracker.autorun(function (computation) {
         if (userGeoLocation.get()) {
             //stop the tracker if we got something
             computation.stop();
-            //console.log(Geolocation.latLng());
+            console.log(Geolocation.latLng());
         }
     }
 });
