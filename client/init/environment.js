@@ -1,18 +1,4 @@
 
-
-getGeolocation=function() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position){
-            //location=position;
-            console.log(position);
-        });
-
-    } else {
-        console.log('not supported');
-     //   x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
 /**
  * Client Initialization. When the client has loaded all the resources, execute this.
  */
@@ -29,10 +15,8 @@ Meteor.startup(function() {
     };
 
 
-    getGeolocation();
-
     console.log('getting');
-    //console.log();
+
 
 
 
