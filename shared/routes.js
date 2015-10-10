@@ -84,27 +84,6 @@ Router.route('/', {
 });
 
 
-/* ALTERNATIVE WAY TO DECLARE THE SAME ROUTE */
-/*
-Router.route('/', function() {
-    // refers to pubcategories.js > allCategories
-    this.wait(Meteor.subscribe('allCategories'));
-    // refers to pubentries.js > newEntries
-    this.wait(Meteor.subscribe('newEntries', 10));
-
-    if (this.ready()) {
-        // once all subscriptions are loaded
-        this.render('dashboard', { data: {
-            categories: dbCategories.find(),
-            newEntries: dbEntries.find()
-        }});
-    }
-    else {
-        // as long as subscriptions are not fully loaded yet
-        this.render('loading');
-    }
-});
-*/
 
 /**
  * Login route, showing a login form.
@@ -118,32 +97,69 @@ Router.route('/login', function() {
     }
 });
 
+Router.route('/arena/:arenaId', {
+    waitOn: function() {
+        return [];
+    },
+    action: function() {
+        this.render('arenalobby');
+    },
+    data: {
 
-/**
- * An example route for route parameter. They can be accessed via this.params.
- * If your route defines :foobar as URL parameter, it can be accessed via this.params.foobar.
- */
-/*
-Router.route('/category/:category', function() {
-    this.wait(Meteor.subscribe('category', this.params.category));
-    this.wait(Meteor.subscribe('entriesByCategory', this.params.category));
-    if (this.ready()) {
-        // render the template 'category'
-        this.render('category', {
-            data: {
-                // this will only return the categories we've subscribed to
-                categories: dbCategories.find(),
-                // this will only return the entries we've subscribed to
-                entries: dbEntries.find()
-            }
-        });
-    }
-    else {
-        this.render('loading');
     }
 });
-*/
 
+Router.route('/arena/:arenaId/play', {
+    waitOn: function() {
+        return [];
+    },
+    action: function() {
+        this.render('gamelobby');
+    },
+    data: {
+
+    }
+});
+
+
+Router.route('/arena/:arenaId/ranking', {
+    waitOn: function() {
+        return [];
+    },
+    action: function() {
+        this.render('arenaranking');
+    },
+    data: {
+
+    }
+});
+
+
+Router.route('/arena/:arenaId/game/:gameType', {
+    waitOn: function() {
+        return [];
+    },
+    action: function() {
+        if (this.params.gameType == 'sudoku') {
+            this.render('sudoku');
+        }
+    },
+    data: {
+
+    }
+});
+
+Router.route('/arena/:arenaId/game/:gameType/lobby', {
+    waitOn: function() {
+        return [];
+    },
+    action: function() {
+        this.render('playerlobby');
+    },
+    data: {
+
+    }
+});
 
 /*
  System Admin Routes
