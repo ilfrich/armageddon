@@ -44,8 +44,10 @@ function validateQuadrant(game, rowFrom, rowTo, colFrom, colTo) {
     game.rows.forEach(function(row) {
         if (row.rowNumber >= rowFrom && row.rowNumber <= rowTo) {
             row.fields.forEach(function(col) {
-                if (col.fixed === true) {
-                    numbers.push(col.value);
+                if (col.colNumber >= colFrom && col.colNumber <= colTo) {
+                    if (col.fixed === true) {
+                        numbers.push(col.value);
+                    }
                 }
             });
         }
@@ -55,8 +57,8 @@ function validateQuadrant(game, rowFrom, rowTo, colFrom, colTo) {
     game.rows.forEach(function(row) {
         if (row.rowNumber >= rowFrom && row.rowNumber <= rowTo) {
             row.fields.forEach(function(col) {
-                if (col.fixed === false) {
-                    if (col.colNumber >= colFrom && col.colNumber <= colTo) {
+                if (col.colNumber >= colFrom && col.colNumber <= colTo) {
+                    if (col.fixed === false) {
                         if (numbers.indexOf(col.value) == -1) {
                             numbers.push(col.value);
                         }
@@ -86,9 +88,8 @@ function checkGame(game) {
                 validateQuadrant(game, 7, 9, 1, 3),
                 validateQuadrant(game, 7, 9, 4, 6),
                 validateQuadrant(game, 7, 9, 7, 9)];
-    var result = (quadrantValidation.indexOf(false) != -1);
 
-
+    var result = (quadrantValidation.indexOf(false) == -1);
     var allCols = [];
 
     // validating rows
@@ -169,8 +170,6 @@ Template.sudoku.events({
             });
         }
 
-
-
         $('.cell.selected').removeClass('selected');
         if ($(cell).attr('data-fixed') == 'true') {
             // fixed value, don't do anything
@@ -184,7 +183,6 @@ Template.sudoku.events({
 
             $('#number-select').attr('data-col', col).attr('data-row', row).show();
         }
-
     },
 
 
