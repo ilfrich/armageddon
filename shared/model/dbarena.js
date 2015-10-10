@@ -9,10 +9,12 @@ dbArena = new Mongo.Collection('arena');
 
 GeoLocation = new SimpleSchema({
     latitude: {
-        type: Number
+        type: Number,
+        decimal:true
     },
     longitude: {
-        type: Number
+        type: Number,
+        decimal:true
     }
 });
 
