@@ -4,13 +4,8 @@
  *
  *
  */
-dbSudoku = new Mongo.Collection();
+dbSudoku = new Mongo.Collection('sudoku');
 
-SudokuRow = new SimpleSchema({
-    fields: {
-        type: [String]
-    }
-});
 
 dbSudoku.attachSchema(new SimpleSchema({
     players: {
@@ -20,7 +15,7 @@ dbSudoku.attachSchema(new SimpleSchema({
         type: String
     },
     rows: {
-        type: [SudokuRow]
+        type: [[String]]
     },
     timeTaken: {
         type: Number

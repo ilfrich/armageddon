@@ -2022,7 +2022,7 @@ Meteor.startup(function() {
             ['', '', '', '1', '', '6', '', '', ''],
             ['', '9', '', '4', '', '8', '', '5', ''],
         ],
-        timeTake: 0
+        timeTaken: 0
     }
     if (dbSudoku.find().count() == 0) {
         dbSudoku.insert(sudoku);
