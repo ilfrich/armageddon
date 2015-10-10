@@ -2,24 +2,37 @@
     <div id="view-arenalobby">
         <div class="container">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-6 lobbyImage">
                     {IMAGE}
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-6 lobbyDescription">
                     {NAME}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-6">
+            <div class="row buttonRow">
+                <div class="col-xs-12">
                     <div class="button btn btn-primary"> PLAY GAME</div>
                 </div>
-                <div class="col-xs-6">
+            </div>
+            <div class="row buttonRow">
+                <div class="col-xs-12">
                     <div class="button btn btn-primary"> CHALLENGE</div>
-
-
                 </div>
             </div>
-        </div>
+            <div class="row kingRow">
+                <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
 
+                    <div class="col-xs-6">
+                        <a href="arenaranking" class="button btn btn-primary"> View Ranks</a>
+                    </div>
+
+
+                    <div class="col-xs-6">
+                        <a class="button btn btn-primary"> Challenge</a>
+                    </div>
+
+
+            </div>
+        </div>
     </div>
 </template>
