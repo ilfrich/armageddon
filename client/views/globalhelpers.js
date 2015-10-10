@@ -138,7 +138,10 @@ Template.registerHelper('isNotEmpty', function(item) {
 });
 
 Template.registerHelper('isActiveClass', function(bool) {
-    return bool ? ' active' : '';
+    return bool === true ? ' active' : '';
+});
+Template.registerHelper('isActiveClassEquals', function(a, b) {
+    return a == b ? ' active' : '';
 });
 
 /**

@@ -2,27 +2,36 @@
 
 #view-sudoku {
   .timer{
-
-      font-size: 21px;
-      font-weight: 700;
-      line-height: 30px;
-      color: white;
-
-
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 30px;
+    color: white;
   }
 
   #game-area {
     margin-top: 10px;
 
+    .row {
+      margin: auto;
+    }
+
     .cell {
+      background-color: #fff;
       border: 1px solid #aaa;
-      height: 50px;
+      height: 40px;
       width: 11.1%;
       display: table-cell;
-      font-size: 24px;
-      padding-top: 7px;
+      font-size: 20px;
+      padding: 4px 0px;
       text-align: center;
       cursor: pointer;
+    }
+    .cell.error {
+      background-color: #ff0000;
+      color: #fff;
+    }
+    .cell.active.observe {
+      background-color: #f5ff95;
     }
     .cell.selected {
       background-color: @brandColor;

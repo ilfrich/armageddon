@@ -5,13 +5,11 @@
  *
  */
 var runtime = new ReactiveVar(0);
-var maxTime = 180;
 
 
 function updateGame(game, row, col, newValue) {
 
     var newRows = [];
-
     game.rows.forEach(function(r) {
         if (r.rowNumber == row) {
             var newFields = [];
@@ -26,7 +24,7 @@ function updateGame(game, row, col, newValue) {
                 }
                 newFields.push(f);
             });
-            r.rows = newFields;
+            r.fields = newFields;
         }
         newRows.push(r);
     });
@@ -34,20 +32,43 @@ function updateGame(game, row, col, newValue) {
     dbSudoku.update({ _id: game._id }, { $set: {
         rows: newRows
     }});
+
+    game.rows = newRows;
+    return game;
 }
 
 function validateQuadrant(game, rowFrom, rowTo, colFrom, colTo) {
-
     var numbers = [];
+
+    // handle fixed numbers
     game.rows.forEach(function(row) {
         if (row.rowNumber >= rowFrom && row.rowNumber <= rowTo) {
             row.fields.forEach(function(col) {
                 if (col.colNumber >= colFrom && col.colNumber <= colTo) {
-                    if (numbers.indexOf(col.value) == -1) {
+                    if (col.fixed === true) {
                         numbers.push(col.value);
                     }
                 }
-            })
+            });
+        }
+    });
+
+    // handle own numbers
+    game.rows.forEach(function(row) {
+        if (row.rowNumber >= rowFrom && row.rowNumber <= rowTo) {
+            row.fields.forEach(function(col) {
+                if (col.colNumber >= colFrom && col.colNumber <= colTo) {
+                    if (col.fixed === false) {
+                        if (numbers.indexOf(col.value) == -1) {
+                            numbers.push(col.value);
+                        }
+                        else if (col.value !== undefined) {
+                            var culprit = $('#game-area .cell[data-row="' + row.rowNumber + '"][data-col="' + col.colNumber + '"]');
+                            culprit.addClass('error').removeClass('selected');
+                        }
+                    }
+                }
+            });
         }
     });
 
@@ -56,18 +77,19 @@ function validateQuadrant(game, rowFrom, rowTo, colFrom, colTo) {
 
 
 function checkGame(game) {
-    var result = (validateQuadrant(game, 1, 3, 1, 3) &&
-                validateQuadrant(game, 1, 3, 4, 6) &&
-                validateQuadrant(game, 1, 3, 7, 9) &&
-                validateQuadrant(game, 4, 6, 1, 3) &&
-                validateQuadrant(game, 4, 6, 4, 6) &&
-                validateQuadrant(game, 4, 6, 7, 9) &&
-                validateQuadrant(game, 7, 9, 1, 3) &&
-                validateQuadrant(game, 7, 9, 4, 6) &&
-                validateQuadrant(game, 7, 9, 7, 9));
+    $('.cell.error').removeClass('error');
 
+    var quadrantValidation = [validateQuadrant(game, 1, 3, 1, 3),
+                validateQuadrant(game, 1, 3, 4, 6),
+                validateQuadrant(game, 1, 3, 7, 9),
+                validateQuadrant(game, 4, 6, 1, 3),
+                validateQuadrant(game, 4, 6, 4, 6),
+                validateQuadrant(game, 4, 6, 7, 9),
+                validateQuadrant(game, 7, 9, 1, 3),
+                validateQuadrant(game, 7, 9, 4, 6),
+                validateQuadrant(game, 7, 9, 7, 9)];
 
-
+    var result = (quadrantValidation.indexOf(false) == -1);
     var allCols = [];
 
     // validating rows
@@ -137,20 +159,34 @@ Template.sudoku.events({
         var col = $(cell).attr('data-col');
         var row = $(cell).attr('data-row');
 
-        if ($(cell).attr('data-fixed') === true) {
+        // highlight cells
+        var cellNumber = $(cell).text().trim();
+        if (cellNumber != '') {
+            $('.cell').removeClass('observe');
+            $('.cell').each(function(index, item) {
+                if ($(item).text().trim() == cellNumber) {
+                    $(item).addClass('observe');
+                }
+            });
+        }
+
+        $('.cell.selected').removeClass('selected');
+        if ($(cell).attr('data-fixed') == 'true') {
+            // fixed value, don't do anything
+            $('#number-select').hide();
             return;
         }
         else {
+            // highlight selected cell and show number pad
             $('.cell.selected').removeClass('selected');
-            $(cell).addClass('selected');
+            $(cell).addClass('selected').removeClass('observe');
 
             $('#number-select').attr('data-col', col).attr('data-row', row).show();
         }
-
     },
 
 
-    'click #number-select .number': function(e, template) {
+    'click #number-select .number': function(e) {
 
         var col = $('#number-select').attr('data-col');
         var row = $('#number-select').attr('data-row');
@@ -158,8 +194,8 @@ Template.sudoku.events({
 
         if (action == 'delete') {
             var game = dbSudoku.findOne(Session.get('sudokuId'));
-
-            updateGame(game, row, col, null);
+            game = updateGame(game, row, col, null);
+            checkGame(game);
         }
         else if (action == 'close') {
             // do nothing, closing number pad below
@@ -167,19 +203,17 @@ Template.sudoku.events({
         else {
             var number = $(e.target).closest('.number').text();
             var game = dbSudoku.findOne(Session.get('sudokuId'));
-
-            updateGame(game, row, col, number);
+            game = updateGame(game, row, col, number);
             if (checkGame(game)) {
-                var remainingTime = maxTime - runtime.get();
                 sAlert.success('Game Won!');
-                Meteor.call('sudokuWon', game, remainingTime, function(err, data) {
+                $('.cell.error').removeClass('error');
+                Meteor.call('sudokuWon', game, runtime.get(), function(err, data) {
                     setTimeout(function() {
                         Router.go('/arena/' + game.arenaId);
                     }, 1000)
                 });
             }
         }
-
 
         $('#number-select').hide();
     }

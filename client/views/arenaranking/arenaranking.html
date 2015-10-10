@@ -5,23 +5,35 @@
       <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
     </div>
 
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-xs-3"><h4>#</h4></div>
-        <div class="col-xs-3"><h4>Username</h4></div>
-        <div class="col-xs-3"><h4>Score</h4></div>
-        <div class="col-xs-3"><h4>Played</h4></div>
-      </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4 title"><h1>Scoreboard</h1></div>
+    </div>
 
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-1">#</div>
+        <div class="col-xs-7">Player</div>
+        <div class="col-xs-2">Score</div>
+        <div class="col-xs-2">Played</div>
+      </div>
+    </div>
+
+    <div class="panel-body">
       {{#each sortedRanking arena}}
-        <div class="row line-separator">
-          <div class="col-xs-3">{{incremented @index}}</div>
-          <div class="col-xs-3">{{resolveUser this.userId}}</div>
-          <div class="col-xs-3">{{this.points}}</div>
-          <div class="col-xs-3">{{this.gamesCount}}</div>
+        <div class="row tableRow line-separator {{isActiveClassEquals currentUser._id userId}}">
+          <div class="col-xs-1 right">{{incremented @index}}</div>
+          <div class="col-xs-7">{{resolveUser this.userId}}</div>
+          <div class="col-xs-2 right">{{this.points}}</div>
+          <div class="col-xs-2 right">{{this.gamesCount}}</div>
         </div>
       {{/each}}
     </div>
+  </div>
+
+  <div class="row">
+      <a href="/arena/{{arena._id}}" class="col-xs-12" style="text-align: center; height: 40px;margin-top: 10px">
+          <img src="/images/background/arena.png" style="height: 100%">
+      </a>
   </div>
 
 
