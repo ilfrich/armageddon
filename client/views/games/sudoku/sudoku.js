@@ -137,16 +137,30 @@ Template.sudoku.events({
 
 
     'click #number-select .number': function(e, template) {
-        var number = $(e.target).closest('.number').text();
-        var game = dbSudoku.findOne(Session.get('sudokuId'));
 
-        var col = $('#number-select').attr('data-col');
-        var row = $('#number-select').attr('data-row');
-
-        updateGame(game, row, col, number);
-        if (checkGame(game)) {
-            sAlert.success('Game Won!');
+        var action = ($(e.target).closest('.number').attr('data-action'));
+        if (action == 'delete') {
+            
         }
+        else if (action == 'close') {
+            // do nothing, closing number pad below
+        }
+        else {
+            var number = $(e.target).closest('.number').text();
+            var game = dbSudoku.findOne(Session.get('sudokuId'));
+
+            var col = $('#number-select').attr('data-col');
+            var row = $('#number-select').attr('data-row');
+
+            updateGame(game, row, col, number);
+            if (checkGame(game)) {
+                sAlert.success('Game Won!');
+            }
+        }
+
+
         $('#number-select').hide();
+
+
     }
 });
