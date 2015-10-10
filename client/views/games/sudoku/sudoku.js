@@ -79,6 +79,7 @@ function validateQuadrant(game, rowFrom, rowTo, colFrom, colTo) {
 function checkGame(game) {
     $('.cell.error').removeClass('error');
 
+    // validate quadrants
     var quadrantValidation = [validateQuadrant(game, 1, 3, 1, 3),
                 validateQuadrant(game, 1, 3, 4, 6),
                 validateQuadrant(game, 1, 3, 7, 9),
@@ -96,17 +97,44 @@ function checkGame(game) {
     game.rows.forEach(function(row) {
         var alreadyUsed = [];
         row.fields.forEach(function(field) {
-            if (allCols[field.colNumber] === undefined) {
-                allCols[field.colNumber] = new Array();
-            }
-            if (allCols[field.colNumber].indexOf(field.value) == -1) {
+            if (field.fixed) {
+                // add to row
+                alreadyUsed.push(field.value);
+
+                // add to column storage
+                if (allCols[field.colNumber] === undefined) {
+                    allCols[field.colNumber] = new Array();
+                }
                 allCols[field.colNumber].push(field.value);
             }
-            if (field.value > 0) {
-                if (alreadyUsed.indexOf(field.value) == -1) {
-                    alreadyUsed.push(field.value);
+        });
+        row.fields.forEach(function(field) {
+            if (!field.fixed) {
+                if (field.value > 0) {
+                    if (alreadyUsed.indexOf(field.value) == -1) {
+                        alreadyUsed.push(field.value);
+                    }
+                    else {
+                        // handle invalid row
+                        var culprit = $('#game-area .cell[data-row="' + row.rowNumber + '"][data-col="' + field.colNumber + '"]');
+                        culprit.addClass('error').removeClass('selected');
+                    }
+
+                    // handle column storage
+                    if (allCols[field.colNumber] === undefined) {
+                        allCols[field.colNumber] = new Array();
+                    }
+                    if (allCols[field.colNumber].indexOf(field.value) == -1) {
+                        allCols[field.colNumber].push(field.value);
+                    }
+                    else {
+                        // handle invalid column value
+                        var culprit = $('#game-area .cell[data-row="' + row.rowNumber + '"][data-col="' + field.colNumber + '"]');
+                        culprit.addClass('error').removeClass('selected');
+                    }
                 }
             }
+
         });
         if (alreadyUsed.length != 9) {
             result = false;
@@ -158,6 +186,18 @@ Template.sudoku.events({
         var cell = $(e.target).closest('.cell');
         var col = $(cell).attr('data-col');
         var row = $(cell).attr('data-row');
+        
+
+        if ($(cell).attr('data-fixed') == 'true') {
+            // fixed value, don't do anything
+            $('#number-select').hide();
+            $('.cell.selected').removeClass('selected');
+        }
+        else {
+            // highlight selected cell and show number pad
+            $('#number-select').attr('data-col', col).attr('data-row', row).show();
+            $(cell).addClass('selected').removeClass('observe');
+        }
 
         // highlight cells
         var cellNumber = $(cell).text().trim();
@@ -168,20 +208,6 @@ Template.sudoku.events({
                     $(item).addClass('observe');
                 }
             });
-        }
-
-        $('.cell.selected').removeClass('selected');
-        if ($(cell).attr('data-fixed') == 'true') {
-            // fixed value, don't do anything
-            $('#number-select').hide();
-            return;
-        }
-        else {
-            // highlight selected cell and show number pad
-            $('.cell.selected').removeClass('selected');
-            $(cell).addClass('selected').removeClass('observe');
-
-            $('#number-select').attr('data-col', col).attr('data-row', row).show();
         }
     },
 
