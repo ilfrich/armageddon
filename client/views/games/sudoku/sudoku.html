@@ -1,11 +1,14 @@
 <template name="sudoku">
 	<div id="view-sudoku">
 		<h1>Sudoku</h1>
+
+		<p>Timer: <span id="timer">{{displayTime}}</span></p>
+
 		{{#with currentGame}}
 			{{#each rows}}
-				<div class="row">
-					{{#each this}}
-						<div class="col-xs-1 cell">{{this}} </div>
+				<div class="row" data-row="{{rowNumber}}">
+					{{#each fields}}
+						<div class="col-xs-1 cell" data-row="{{../rowNumber}}" data-col="{{colNumber}}">{{value}}</div>
 					{{/each}}
 				</div>
 			{{/each}}

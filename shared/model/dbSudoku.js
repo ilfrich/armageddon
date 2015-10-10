@@ -6,6 +6,24 @@
  */
 dbSudoku = new Mongo.Collection('sudoku');
 
+SudokuFieldSchema = new SimpleSchema({
+    colNumber: {
+        type: Number
+    },
+    value: {
+        type: Number,
+        optional: true
+    }
+});
+
+SudokuRowSchema = new SimpleSchema({
+    rowNumber: {
+        type: Number
+    },
+    fields: {
+        type: [SudokuFieldSchema]
+    }
+});
 
 dbSudoku.attachSchema(new SimpleSchema({
     players: {
@@ -15,9 +33,12 @@ dbSudoku.attachSchema(new SimpleSchema({
         type: String
     },
     rows: {
-        type: [[String]]
+        type: [SudokuRowSchema]
     },
     timeTaken: {
         type: Number
+    },
+    started: {
+        type: Date
     }
 }));
