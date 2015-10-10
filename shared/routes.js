@@ -84,6 +84,16 @@ Router.route('/', {
 });
 
 
+Router.route('/register', {
+    waitOn: function() {
+        return [];
+    },
+    action: function() {
+        this.render('register');
+    },
+    data: {
+    }
+});
 
 /**
  * Login route, showing a login form.

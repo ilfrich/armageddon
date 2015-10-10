@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94e0e673-5bed-405a-ba24-1a1e9b269ba0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/model/dbcategories.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/model/dbentries.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/routes.js" afterPath="$PROJECT_DIR$/shared/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="armageddon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5905744" vertical-offset="2006" max-vertical-offset="2685">
-              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="870" max-vertical-offset="2835">
+              <caret line="93" column="11" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -41,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arenaranking.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/views/arenaranking/arenaranking.html">
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/views/register/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="120">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.045801528" vertical-offset="0" max-vertical-offset="655">
+              <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -63,12 +60,13 @@
         <option value="$PROJECT_DIR$/local/build/programs/web.browser/head.html" />
         <option value="$PROJECT_DIR$/shared/model/dbarena.js" />
         <option value="$PROJECT_DIR$/server/init/dbinit.js" />
-        <option value="$PROJECT_DIR$/shared/routes.js" />
         <option value="$PROJECT_DIR$/client/views/lobbies/playerlobby/playerlobby.html" />
         <option value="$PROJECT_DIR$/client/views/lobbies/gamelobby/gamelobby.html" />
         <option value="$PROJECT_DIR$/client/views/lobbies/arenalobby/arenalobby.html" />
         <option value="$PROJECT_DIR$/client/views/games/sudoku/sudoku.html" />
         <option value="$PROJECT_DIR$/client/views/arenaranking/arenaranking.html" />
+        <option value="$PROJECT_DIR$/shared/routes.js" />
+        <option value="$PROJECT_DIR$/client/views/register/register.html" />
       </list>
     </option>
   </component>
@@ -267,29 +265,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lobbies" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armageddon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armageddon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arenaranking" />
+              <option name="myItemId" value="register" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -511,7 +487,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/views/arenaranking/arenaranking.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="120">
+        <state vertical-scroll-proportion="0.022900764" vertical-offset="0" max-vertical-offset="655">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
@@ -519,11 +495,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5905744" vertical-offset="2006" max-vertical-offset="2685">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="870" max-vertical-offset="2835">
+          <caret line="93" column="11" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/register/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.045801528" vertical-offset="0" max-vertical-offset="655">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
