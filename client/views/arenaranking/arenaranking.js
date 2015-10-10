@@ -10,14 +10,12 @@ Template.arenaranking.helpers({
   },
 
   resolveUser: function(userId) {
-    console.log(userMap.get()[userId]);
     return userMap.get()[userId];
-
   },
 
   fetchUserMap: function(arena) {
     if (arena.ranking !== undefined) {
-      userlist = [];
+        userlist = [];
         arena.ranking.forEach(function(rank) {
           userlist.push(rank.userId);
         });
