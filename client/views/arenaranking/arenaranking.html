@@ -1,26 +1,27 @@
 <template name="arenaranking">
-  <div id="view-arenaranking">
+  <div id="view-arenaranking" class="panel panel-default">
 
     <div class="row kingRow">
       <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-3"><h4>#</h4></div>
-      <div class="col-xs-3"><h4>Username</h4></div>
-      <div class="col-xs-3"><h4>Score</h4></div>
-      <div class="col-xs-3"><h4>Played</h4></div>
-    </div>
-
-    {{#each sortedRanking arena}}
+    <div class="panel-body">
       <div class="row">
-        <div class="col-xs-3">{{incremented @index}}</div>
-        <div class="col-xs-3">{{resolveUser this.userId}}</div>
-        <div class="col-xs-3">{{this.points}}</div>
-        <div class="col-xs-3">{{this.gamesCount}}</div>
+        <div class="col-xs-3"><h4>#</h4></div>
+        <div class="col-xs-3"><h4>Username</h4></div>
+        <div class="col-xs-3"><h4>Score</h4></div>
+        <div class="col-xs-3"><h4>Played</h4></div>
       </div>
-    {{/each}}
 
+      {{#each sortedRanking arena}}
+        <div class="row line-separator">
+          <div class="col-xs-3">{{incremented @index}}</div>
+          <div class="col-xs-3">{{resolveUser this.userId}}</div>
+          <div class="col-xs-3">{{this.points}}</div>
+          <div class="col-xs-3">{{this.gamesCount}}</div>
+        </div>
+      {{/each}}
+    </div>
   </div>
 
 
