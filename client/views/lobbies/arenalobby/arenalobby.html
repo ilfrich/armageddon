@@ -38,15 +38,31 @@
                 </div>
             </div-->
             <div class="row kingRow">
-                <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
+                <a href="/arena/{{arena._id}}/ranking" class="col-xs-4" style="text-align: center;height: 100%">
+                    <img src="/images/icons/crown33.png" style="height: 60%"><br>View Ranks
 
-                    <div class="col-xs-6">
-                        <a href="/arena/{{arena._id}}/ranking" class="button btn btn-primary"> View Ranks</a>
-                    </div>
+                </a>
+                <div class="col-xs-4 kingImage"><img class='profilePic' src="/images/profiles/{{king.picture}}">
+                </div>
 
 
-                    <div class="col-xs-6">
-                        <a class="button btn btn-primary"> Challenge</a>
+
+
+                    <div class="col-xs-4">
+                        <p>{{king.name}}</p>
+                        <div class="col-xs-6">
+                            Games
+                        </div>
+                        <div class="col-xs-6">
+                            Score
+                        </div>
+                        <div class="col-xs-6">
+                            {{highScore.gamesCount}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{highScore.points}}
+                        </div>
+
                     </div>
 
 
