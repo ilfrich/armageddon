@@ -1,4 +1,7 @@
 Template.arenalobby.helpers({
+    arenaId: function() {
+        return Router.current().params.arenaId;
+    }
 });
 
 Template.arenalobby.events({
