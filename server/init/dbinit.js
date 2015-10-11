@@ -99,8 +99,88 @@ Meteor.startup(function() {
                 latitude: 37.77468959999999,
                 longitude: -122.41546270000003
             }
+        },
+        {
+            type: "Railway Station",
+            name: "Dematagoda Railway",
+            icon:'train',
+            location: {
+                latitude: 6.944442,
+                longitude: 79.879216
+            }
+        },
+        {
+            type: "Railway Station",
+            name: "Narahenpita Railway",
+            icon:'train',
+            location: {
+                latitude: 6.901438,
+                longitude: 79.877759
+            }
+        },
+        {
+            type: "Code Shoppe",
+            name: "Q42",
+            icon:'townhall',
+            location: {
+                latitude: 52.069515,
+                longitude: 4.323509
+            }
+        },
+        {
+            type: "Railway Station",
+            name: "DEN HAAG HS",
+            icon:'train',
+            location: {
+                latitude: 52.070346,
+                longitude: 4.322264
+            }
+        },
+        {
+            type: "Church",
+            name: "St. Patrick's Cathedral",
+            icon:'townhall',
+            location: {
+                latitude: 40.758683,
+                longitude: -73.975993
+            }
+        },
+        {
+            type: "Railway Station",
+            name: "Grand Central - 42 St",
+            icon:'train',
+            location: {
+                latitude: 40.752677,
+                longitude: -73.977425
+            }
+        },
+        {
+            type: "Transport Interchange",
+            name: "9TH and Market",
+            icon:'train',
+            location: {
+                latitude: 37.777678,
+                longitude: -122.416261
+            }
+        },
+        {
+            type: "Tram stop",
+            name: "Lincoln Square/Swanston St",
+            icon:'train',
+            location: {
+                latitude: -37.802384,
+                longitude: 144.963651
+            }
+        },
+        {
+            type: "Code Shoppe",
+            name: "IBM Research",
+            icon:'twonhall',
+            location: {
+                latitude: -37.802110,
+                longitude: 144.966973
+            }
         }
-
     ];
 
 
