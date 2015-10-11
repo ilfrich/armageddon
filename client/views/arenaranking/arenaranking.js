@@ -1,7 +1,20 @@
 var userMap = new ReactiveVar([]);
 
 Template.arenaranking.helpers({
-  sortedRanking: function(arena) {
+
+    king: function () {
+        ranks = this.arena.ranking.sort(function (a, b) {
+            return b.points - a.points;
+        });
+        var result;
+        Meteor.call('fetchUserProfile', ranks[0].userId, function (err, data) {
+            Session.set('user', data);
+        });
+        return Session.get('user');
+
+    },
+
+    sortedRanking: function(arena) {
     var arenaRanking = arena.ranking;
     arenaRanking.sort(function(a, b) {
         return b.points - a.points;
