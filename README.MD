@@ -15,4 +15,5 @@ There are 2 existing users with a profile picture (credentials: test/test or adm
 Newly registered users sadly cannot add a profile photo as we haven't bothered to implement an user account management
 view.
 
-Multiplayer is only possible with 2 different users accessing the multiplayer section (play Co-Op) at the same time.
+Multiplayer is only possible with 2 different users accessing the multiplayer section (play Co-Op) within the same
+arena at the same time.
