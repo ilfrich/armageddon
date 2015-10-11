@@ -66,6 +66,26 @@ button.error {
   background-color: #A00;
   color: #fff;
 }
+
+/*
+ * new primary button colors to compliment the app bg color
+ */
+
+button.btn-primary {
+  background-color: @backgroundColorCompliment;
+  border-color: @backgroundColorCompliment;
+}
+
+button.btn-primary:hover {
+  background-color: @backgroundColorComplimentDark;
+  border-color: @backgroundColorComplimentDark;
+}
+
+button.btn-primary:active {
+  background-color: @backgroundColorComplimentLight;
+  border-color: @backgroundColorComplimentLight;
+}
+
 /*
  * Generic error class to change the text color to red.
  */
@@ -87,6 +107,15 @@ h2 {
   font-size: 20px;
   border-bottom: @defaultBorder;
 }
+
+/*
+ * Styling for links to colmpliment colors
+ */
+
+a:link {
+  color: @backgroundColorCompliment;
+}
+
 
 /*
  * Draws a 15x15 px square with a border. The background color should be determined by other classes.
