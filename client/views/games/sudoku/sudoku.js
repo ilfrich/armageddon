@@ -275,6 +275,17 @@ Template.sudoku.events({
             var number = $(e.target).closest('.number').text();
             var game = dbSudoku.findOne(Session.get('sudokuId'));
             updateGame(game, row, col, number);
+
+            // highlight all cells with the same value
+            setTimeout(function() {
+                $('.cell').removeClass('observe');
+                $('.cell').each(function(index, item) {
+                    if ($(item).text().trim() == number) {
+                        $(item).addClass('observe');
+                    }
+                });
+            }, 500);
+
         }
 
         $('#number-select').hide();
