@@ -26,11 +26,7 @@ var matchIcon = function (item) {
         case "Support":
             return 'stethoscope';
             break;
-
-
     }
-da
-
 };
 
 Template.mapControl.helpers({

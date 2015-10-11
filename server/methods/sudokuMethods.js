@@ -25,11 +25,13 @@ Meteor.methods({
     },
 
 
-    sudokuWon: function(game, runtime) {
+    sudokuWon: function (game, runtime) {
         // update game
-        dbSudoku.update({ _id: game._id }, { $set: {
-            timeTaken: runtime
-        }});
+        dbSudoku.update({_id: game._id}, {
+            $set: {
+                timeTaken: runtime
+            }
+        });
 
         if ((MAX_SUDOKU_TIME - runtime) > 0) {
             // update arena ranking
@@ -44,7 +46,7 @@ Meteor.methods({
 
             // find current rank object
             var currentRankObject = null
-            ranking.forEach(function(rank) {
+            ranking.forEach(function (rank) {
                 if (rank.userId == userId) {
                     currentRankObject = rank;
                 }
@@ -59,7 +61,12 @@ Meteor.methods({
                 };
             }
             // add points
-            currentRankObject.points += (MAX_SUDOKU_TIME - runtime);
+            if (game.mode == 'single') {
+                currentRankObject.points += (MAX_SUDOKU_TIME - runtime);
+            }
+            else {
+                currentRankObject.points += Math.round((MAX_SUDOKU_TIME - runtime) / 2);
+            }
 
             if (currentRankObject.gamesCount === undefined) {
                 currentRankObject.gamesCount = 1;
@@ -67,14 +74,18 @@ Meteor.methods({
             currentRankObject.gamesCount++;
 
             // update arena ranking
-            dbArena.update({ _id: arena._id }, { $pull: {
-                ranking: {
-                    userId: userId
+            dbArena.update({_id: arena._id}, {
+                $pull: {
+                    ranking: {
+                        userId: userId
+                    }
                 }
-            }});
-            dbArena.update({ _id: arena._id }, { $push: {
-                ranking: currentRankObject
-            }});
+            });
+            dbArena.update({_id: arena._id}, {
+                $push: {
+                    ranking: currentRankObject
+                }
+            });
         }
     }
 
@@ -217,6 +228,161 @@ function getSudokuTemplates() {
                 },
                 {
                     fields: [6, 8, 2, 3, 9, 5, 1, 4, null]
+                }
+            ]
+        },
+        {
+            rows: [
+                {
+                    fields: [6, null, 8, null, null, 1, 2, null, null]
+                },
+                {
+                    fields: [7, null, null, null, null, 2, null, null, 3]
+                },
+                {
+                    fields: [null, null, 1, null, null, null, null, 6, 9]
+                },
+                {
+                    fields: [null, null, 4, null, null, 5, null, 2, null]
+                },
+                {
+                    fields: [8, null, null, 1, null, 7, null, null, 5]
+                },
+                {
+                    fields: [null, 5, null, 6, null, null, 9, null, null]
+                },
+                {
+                    fields: [4, 6, null, null, null, null, 5, null, null]
+                },
+                {
+                    fields: [1, null, null, 7, null, null, null, null, 6]
+                },
+                {
+                    fields: [null, null, 5, 3, null, null, 1, null, 2]
+                }
+            ]
+        },
+        {
+            rows: [
+                {
+                    fields: [null, 3, 6, null, 5, null, 9, null, 1]
+                },
+                {
+                    fields: [2, null, null, null, null, 9, null, null, 8]
+                },
+                {
+                    fields: [7, null, null, null, null, null, null, 6, null]
+                },
+                {
+                    fields: [null, 7, null, 2, null, 3, null, null, null]
+                },
+                {
+                    fields: [null, 1, 2, null, null, null, 8, 3, null]
+                },
+                {
+                    fields: [null, null, null, 1, null, 5, null, 2, null]
+                },
+                {
+                    fields: [null, 6, null, null, null, null, null, null, 3]
+                },
+                {
+                    fields: [4, null, null, 5, null, null, null, null, 2]
+                },
+                {
+                    fields: [1, null, 7, null, 9, null, 6, 4, null]
+                }
+            ]
+        },
+        {
+            rows: [
+                {
+                    fields: [null, 7, 4, 5, null, null, null, 1, null]
+                },
+                {
+                    fields: [9, null, null, null, 6, null, null, null, 2]
+                },
+                {
+                    fields: [null, null, null, null, 9, 3, null, null, 7]
+                },
+                {
+                    fields: [null, null, 9, null, null, null, null, null, 1]
+                },
+                {
+                    fields: [null, 3, 1, null, 2, null, 6, 9, null]
+                },
+                {
+                    fields: [7, null, null, null, null, null, 2, null, null]
+                },
+                {
+                    fields: [6, null, null, 8, 4, null, null, null, null]
+                },
+                {
+                    fields: [2, null, null, null, 5, null, null, null, 8]
+                },
+                {
+                    fields: [null, 5, null, null, null, 6, 4, 3, null]
+                }
+            ]
+        },
+        {
+            rows: [
+                {
+                    fields: [null, null, null, 5, null, 4, 1, 3, null]
+                },
+                {
+                    fields: [null, 2, null, null, null, null, null, null, 8]
+                },
+                {
+                    fields: [null, 6, 1, null, null, 9, null, null, 7]
+                },
+                {
+                    fields: [null, 1, 3, null, 5, null, 9, null, null]
+                },
+                {
+                    fields: [null, null, null, 3, null, 8, null, null, null]
+                },
+                {
+                    fields: [null, null, 2, null, 1, null, 6, 5, null]
+                },
+                {
+                    fields: [5, null, null, 1, null, null, 3, 7, null]
+                },
+                {
+                    fields: [2, null, null, null, null, null, null, 6, null]
+                },
+                {
+                    fields: [null, 9, 8, 7, null, 3, null, null, null]
+                }
+            ]
+        },
+        {
+            rows: [
+                {
+                    fields: [3, null, null, null, null, null, null, null, 9]
+                },
+                {
+                    fields: [null, 6, null, null, 4, null, null, 5, null]
+                },
+                {
+                    fields: [null, null, 8, 9, null, 1, 3, null, null]
+                },
+                {
+                    fields: [null, 3, null, 2, null, 5, null, 4, null]
+                },
+                {
+                    fields: [6, null, null, 7, null, 4, null, null, 8]
+                },
+                {
+                    fields: [null, 8, null, 1, null, 3, null, 7, null]
+                },
+                {
+                    fields: [null, null, 1, 6, null, 8, 4, null, null]
+                },
+                {
+                    fields: [null, 9, null, null, 3, null, null, 2, null]
+                },
+                {
+                    fields: [4, null, null, null, null, null, null, null, 6]
                 }
             ]
         }
