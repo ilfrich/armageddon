@@ -16,7 +16,7 @@ Meteor.startup(function() {
             password: 'test',
             email: 'test@noemail.noemail',
             profile: {
-                name: 'Test Test',
+                name: 'Bob Smith',
                 accessLevel: 1,
                 picture:'obama.png'
             }
@@ -26,7 +26,7 @@ Meteor.startup(function() {
             password: 'admin',
             email: 'admin@noemail.noemail',
             profile: {
-                name: 'Don China',
+                name: 'Steven Seagull',
                 accessLevel: 2,
                 picture:'trump.png'
             }
