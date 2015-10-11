@@ -20,12 +20,11 @@ Router.configure({
  * the actual route.
  */
 Router.onBeforeAction(function() {
-
-    if (! Meteor.userId()) {
-        this.render('login');
-    }
-    else if (Router.current().route._path == '/register') {
+    if (Router.current().route._path == '/register') {
         this.next();
+    }
+    else if (! Meteor.userId()) {
+        this.render('login');
     }
     else {
         Meteor.call('removeUserFromLobbies');
