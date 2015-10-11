@@ -38,7 +38,7 @@ Template.mapControl.helpers({
         if (GoogleMaps.loaded()) {
             return {
                 center: new google.maps.LatLng(geo.lat, geo.lng),
-                zoom: 12,
+                zoom: 14,
                 styles: [{
                     "featureType": "landscape",
                     "elementType": "labels",
