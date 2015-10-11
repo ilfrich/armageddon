@@ -175,7 +175,7 @@ Meteor.startup(function() {
         {
             type: "Code Shoppe",
             name: "IBM Research",
-            icon:'twonhall',
+            icon:'townhall',
             location: {
                 latitude: -37.802110,
                 longitude: 144.966973
