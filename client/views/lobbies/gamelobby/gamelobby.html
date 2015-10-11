@@ -1,3 +1,32 @@
 <template name="gamelobby">
-This is the game lobby.
+	<div id="view-gamelobby">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Co-Op Games</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 main-panel">
+				{{#if aloneInLobby}}
+					<div class="center">
+						<span class="fa fa-pulse fa-spinner fa-4x"></span>
+						<h2>Searching for Other Players</h2>
+					</div>
+				{{else}}
+					<div class="center">
+						<h2>Connecting Players...</h2>
+						{{connectPlayers}}
+						{{checkJoin}}
+					</div>
+				{{/if}}
+			</div>
+		</div>
+
+		<div class="row" id="back-button">
+			<a href="/arena/{{lobby.arenaId}}" class="col-xs-12" style="text-align: center; height: 40px;margin-top: 10px">
+				<img src="/images/background/arena.png" style="height: 100%">
+			</a>
+		</div>
+	</div>
+
 </template>

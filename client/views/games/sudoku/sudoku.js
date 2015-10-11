@@ -155,10 +155,6 @@ function checkGame(game) {
 }
 
 
-Template.sudoku.onCreated(function() {
-    this.sudoku = new ReactiveVar();
-    runtime.set(0);
-});
 
 Template.sudoku.helpers({
 
@@ -176,8 +172,57 @@ Template.sudoku.helpers({
     },
 
     currentGame: function() {
-        return dbSudoku.findOne({ _id: Session.get('sudokuId') });
+        var game = dbSudoku.findOne({ _id: Session.get('sudokuId') });
+        if (game !== undefined) {
+            if (checkGame(game)) {
+                if (Template.instance().gameClosed === false) {
+                    Template.instance().gameClosed = true;
+                    sAlert.success('Game Won!');
+                    $('.cell.error').removeClass('error');
+                    Meteor.call('sudokuWon', game, runtime.get(), function(err, data) {
+                        setTimeout(function() {
+                            Router.go('/arena/' + game.arenaId);
+                        }, 1000)
+                    });
+                }
+            }
+        }
+        return game;
+    },
+
+    multiplayer: function() {
+        var game = dbSudoku.findOne(Session.get('sudokuId'));
+        if (game !== undefined) {
+            return (game.players.length > 1)
+        }
+    },
+
+    otherPlayer: function() {
+        var reactiveVar = Template.instance().otherPlayer;
+        if (reactiveVar.get() != null) {
+            return reactiveVar.get();
+        }
+        else {
+            var game = dbSudoku.findOne(Session.get('sudokuId'));
+            var result = null;
+            game.players.forEach(function(player) {
+                if (player != Meteor.userId()) {
+                    Meteor.call('fetchUserProfile', player, function(err, data) {
+                        reactiveVar.set(data);
+                        result = data;
+                    });
+                }
+            });
+            return result;
+        }
     }
+});
+
+Template.sudoku.onCreated(function() {
+    this.gameClosed = false;
+    this.sudoku = new ReactiveVar();
+    this.otherPlayer = new ReactiveVar();
+    runtime.set(0);
 });
 
 
@@ -186,7 +231,6 @@ Template.sudoku.events({
         var cell = $(e.target).closest('.cell');
         var col = $(cell).attr('data-col');
         var row = $(cell).attr('data-row');
-        
 
         if ($(cell).attr('data-fixed') == 'true') {
             // fixed value, don't do anything
@@ -196,6 +240,7 @@ Template.sudoku.events({
         else {
             // highlight selected cell and show number pad
             $('#number-select').attr('data-col', col).attr('data-row', row).show();
+            $('.cell.selected').removeClass('selected');
             $(cell).addClass('selected').removeClass('observe');
         }
 
@@ -229,16 +274,7 @@ Template.sudoku.events({
         else {
             var number = $(e.target).closest('.number').text();
             var game = dbSudoku.findOne(Session.get('sudokuId'));
-            game = updateGame(game, row, col, number);
-            if (checkGame(game)) {
-                sAlert.success('Game Won!');
-                $('.cell.error').removeClass('error');
-                Meteor.call('sudokuWon', game, runtime.get(), function(err, data) {
-                    setTimeout(function() {
-                        Router.go('/arena/' + game.arenaId);
-                    }, 1000)
-                });
-            }
+            updateGame(game, row, col, number);
         }
 
         $('#number-select').hide();

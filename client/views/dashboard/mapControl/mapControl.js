@@ -105,13 +105,14 @@ Template.mapControl.onCreated(function () {
                     id: document._id, visible: true
                 });
 
+
                 var contentString = '<div id="content">'+
                     '<div id="siteNotice">'+
                     '</div>'+
-                    '<h1 id="firstHeading" class="firstHeading"><i class="fa fa-train" ></i><span style="margin-left:20px">'+document.name+'</span>    </h1>'+
+                    '<h1 id="firstHeading" class="firstHeading"><i class="fa fa-train"></i><span style="margin-left:20px">'+document.name+'</span>    </h1>'+
                     '<div id="bodyContent">'+
-                    '<p><b> Information</b>:<b>'+document.type+'</b></p>'+
-                    '<p><b> Current King</b>:<b>John The hunter</b></p>'+
+                    '<p><b> Information</b>: <b>'+document.type+'</b></p>'+
+                    '<p><b> Current King</b>: <b>John The hunter</b></p>'+
                     '</div>'+
                     '</div>';
                 var infowindow = new google.maps.InfoWindow({

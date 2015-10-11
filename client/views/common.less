@@ -1,5 +1,5 @@
 @import "variables";
-
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
 /*
  * Use this for form labels of required fields: <label>My Label <span class="required"></span></label> - this will
  * render a red asterisk next to the label.
@@ -19,7 +19,7 @@
 
 body{
   background-color: @backgroundColor;
-  font-family: 'Lato';
+  font-family: 'Josefin Slab', serif;
 
 }
 .headerContainer{
@@ -37,7 +37,6 @@ body{
 .full-width {
   width: 100%;
 }
-
 
 body div.container {
   //padding-left: 5px;
@@ -73,6 +72,26 @@ button.error {
   background-color: #A00;
   color: #fff;
 }
+
+/*
+ * new primary button colors to compliment the app bg color
+ */
+
+button.btn-primary {
+  background-color: @backgroundColorCompliment;
+  border-color: @backgroundColorCompliment;
+}
+
+button.btn-primary:hover {
+  background-color: @backgroundColorComplimentDark;
+  border-color: @backgroundColorComplimentDark;
+}
+
+button.btn-primary:active {
+  background-color: @backgroundColorComplimentLight;
+  border-color: @backgroundColorComplimentLight;
+}
+
 /*
  * Generic error class to change the text color to red.
  */
@@ -94,6 +113,15 @@ h2 {
   font-size: 20px;
   border-bottom: @defaultBorder;
 }
+
+/*
+ * Styling for links to colmpliment colors
+ */
+
+a:link {
+  color: @backgroundColorCompliment;
+}
+
 
 /*
  * Draws a 15x15 px square with a border. The background color should be determined by other classes.

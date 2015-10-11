@@ -20,13 +20,18 @@ Router.configure({
  * the actual route.
  */
 Router.onBeforeAction(function() {
-    if (Router.current().route._path == '/register') {
-        this.next();
-    }
-    else if (! Meteor.userId()) {
+
+    if (! Meteor.userId()) {
         this.render('login');
     }
+    else if (Router.current().route._path == '/register') {
+        this.next();
+    }
     else {
+        Meteor.call('removeUserFromLobbies');
+        if (Router.current().route._path != '/arena/:arenaId/game/:gameType') {
+            Session.set('sudokuId');
+        }
         this.next();
     }
 });
@@ -125,13 +130,20 @@ Router.route('/arena/:arenaId', {
 
 Router.route('/arena/:arenaId/play', {
     waitOn: function() {
-        return [];
+        return [
+            Meteor.subscribe('lobbyByArena', this.params.arenaId),
+            Meteor.subscribe('arena', this.params.arenaId)
+        ];
     },
     action: function() {
+        Meteor.call('addUserToLobby', this.params.arenaId);
         this.render('gamelobby');
     },
-    data: {
-
+    data: function() {
+        return {
+            lobby: dbGameLobby.findOne({ arenaId: this.params.arenaId }),
+            arena: dbArena.findOne(this.params.arenaId)
+        }
     }
 });
 
@@ -163,15 +175,21 @@ Router.route('/arena/:arenaId/game/:gameType', {
     action: function() {
         var self = this;
         if (this.params.gameType == 'sudoku') {
-            Meteor.call('createSudokuGame', this.params.arenaId, 'single', function(err, data) {
-                if (err) {
-                    sAlert.error('Ooops, the game could not be created.')
-                }
-                else {
-                    Session.set('sudokuId', data);
-                    self.render('sudoku');
-                }
-            });
+            if (Session.get('sudokuId') != null) {
+                this.render('sudoku');
+            }
+            else {
+                Meteor.call('createSudokuGame', this.params.arenaId, 'single', function(err, data) {
+                    if (err) {
+                        sAlert.error('Ooops, the game could not be created.')
+                    }
+                    else {
+                        Session.set('sudokuId', data);
+                        self.render('sudoku');
+                    }
+                });
+            }
+
         }
     },
     data: function() {

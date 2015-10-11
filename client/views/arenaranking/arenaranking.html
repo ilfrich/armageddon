@@ -1,14 +1,20 @@
 <template name="arenaranking">
   <div id="view-arenaranking" class="panel panel-default">
 
+<!--
     <div class="row kingRow" style="padding-top: 5px;text-align: center">
         <div class="col-xs-6" style="height: 100%"> <img src="/images/icons/crown33.png" style="height: 60%"><br><b>{{king.name}}</b></div>
 
         <div class="col-xs-6 kingImage"><img class='profilePic' src="/images/profiles/{{king.picture}}"></div>
+-->
+    <div class="row kingRow">
+        <div class="col-xs-4 col-xs-offset-4 title">King of the {{arena.name}} arena</div>
+        <div class="col-xs-4 col-xs-offset-4 kingImage"><img class='profilePic' src="/images/profiles/{{king.picture}}"></div>
+
     </div>
 
     <div class="row">
-      <div class="col-xs-4 col-xs-offset-4 title"><h1>Scoreboard</h1></div>
+      <div class="col-xs-4 col-xs-offset-4 title">Scoreboard</div>
     </div>
 
     <div class="panel-heading">
