@@ -26,7 +26,8 @@ Template.register.events({
             password: password,
             profile: {
                 name: name,
-                accessLevel: 1
+                accessLevel: 1,
+                picture:'unknown.png'
             }
         });
         Router.go('/');
