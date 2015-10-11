@@ -39,15 +39,18 @@
 				</div>
 			</div>
 
+
+
+			<!-- FOOTER -->
 			<div class="row kingRow">
-				<a href="/arena/{{arena._id}}/ranking" class="col-xs-4 center" style="height: 100%">
-					<img src="/images/icons/crown33.png" style="height: 60%"><br>View Ranks
+				<a href="/arena/{{arena._id}}/ranking" id="footer-rank-link" class="col-xs-4 center">
+					<img src="/images/icons/crown33.png"><br>View Ranks
 				</a>
 				<div class="col-xs-4 kingImage">
 					<img class='profilePic' src="/images/profiles/{{king.picture}}">
 				</div>
-				<div class="col-xs-4 rightCol">
-					<p><b>{{king.name}}</b></p>
+				<div class="col-xs-4 rightCol" style="border-left: 1px solid #f00;">
+					<p class="right">{{king.name}}</p>
 
 					<div class="col-xs-6">Games</div>
 					<div class="col-xs-6">Score</div>
