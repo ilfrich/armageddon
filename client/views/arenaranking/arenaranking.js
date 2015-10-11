@@ -1,6 +1,22 @@
 var userMap = new ReactiveVar([]);
 
 Template.arenaranking.helpers({
+
+    king:function() {
+        //console.log(this.arena);
+        ranks=this.arena.ranking.sort(function(a,b){
+            return b.points- a.points;
+        });
+        console.log(ranks);
+        var result;
+        result=Meteor.call('fetchUserProfile', ranks[0].userId, function(err, data){
+            Session.set('user',data);
+        });
+        return Session.get('user');
+
+    },
+
+
   sortedRanking: function(arena) {
     var arenaRanking = arena.ranking;
     arenaRanking.sort(function(a, b) {

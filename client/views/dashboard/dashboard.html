@@ -1,12 +1,15 @@
 <template name="dashboard">
     <div id="view-dashboard">
+        <h1>
+            Here are the currently available Arenas in your Area
+        </h1>
         {{#if minDistance}}
 			<button class="full-width btn btn-primary" data-arena-id="{{closest._id}}">
-				Enter {{closest.name}}
+				Enter {{closest.name}} Arena
 			</button>
             {{else}}
             <button class="full-width btn btn-primary getToButton">
-                Get to {{closest.name}}
+                Get to {{closest.name}} Arena
             </button>
         {{/if}}
         {{>mapControl}}

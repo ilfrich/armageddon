@@ -2,6 +2,10 @@
 @import "../../variables";
 
 #view-arenalobby{
+  .container{
+    padding-left: 0px;
+    padding-left: 0px;
+  }
   .lobbyDescription, .lobbyImage {
     margin-top: 30px;
 
@@ -27,21 +31,32 @@
     line-height: 30px;
     color: white;
     padding-top: 10px;
+    word-wrap: break-word;
 
   }
 
   .btn-play{
     background: transparent;
-    border:3px solid white;
+    border:2px solid white;
     padding-top: 20px;
-    border-radius: 15px;
+    //border-radius: 15px;
 
+
+  }
+  .imageRow{
+    margin-top: 30px;
+    height: 180px;
+    text-align: left;
+
+    .btn{
+      height: 100%;
+    }
 
   }
 
   .buttonRow {
-    margin-top: 40px;
-    height: 250px;
+    margin-top: 20px;
+    height: 200px;
     text-align: left;
 
     .btn{
@@ -58,6 +73,16 @@
     position: fixed;
     bottom: 0px;
     left: 15px;
+    .rightCol{
+      padding: 0px;
+      padding-right: 0px;
+      padding-right: 0px;
+      .col-xs-4,.col-xs-6,.col-xs-12{
+        padding-right: 0px;
+        padding-right: 0px;
+      }
+    }
+
 
 
   }

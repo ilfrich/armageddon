@@ -1,4 +1,4 @@
-<template name="arenalobby">
+<template name="arenalobby" xmlns="http://www.w3.org/1999/html">
     <div id="view-arenalobby">
         <div class="container">
             <div class="row">
@@ -10,23 +10,44 @@
                 </div>
             </div>
 
-            <div class="row buttonRow">
-                    <a href="/arena/{{arena._id}}/game/sudoku" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play"><img src="/images/background/play.png">
-                        <div class="col-xs-12 playText" style="text-align: center" >
-                            <span class="fa fa-user"></span>
-                        </div>
+            <div class="row imageRow" style="text-align: center">
+                    <img src="/images/background/play.png">
 
-                    </a>
             </div>
 
             <div class="row buttonRow">
+                <div class="col-xs-6" style="text-align: center">
+                    <a href="/arena/{{arena._id}}/game/sudoku" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play">
+                        <div class="playText">
+                             <span class="fa fa-users fa-2x"></span>
+                            <br>Ranks</div>
 
-                    <a href="/arena/{{arena._id}}/play" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play"><img src="/images/background/play.png">
-                        <div class="col-xs-12 playText" style="text-align: center" >
-                              <span class="fa fa-users"></span>
-                        </div>
+                        <!--div class="col-xs-12 playText" style="text-align: center" >
+
+                            <span></span>
+                        </div-->
 
                     </a>
+
+                </div>
+                <div class="col-xs-6 ">
+                    <a href="/arena/{{arena._id}}/play" class="col-xs-10 col-xs-offset-1 btn btn-default btn-play">
+
+                        <div class=" playText" style="text-align: center" >
+
+                            <span class="fa fa-user fa-2x"></span>
+
+                            <span class="fa fa-user fa-2x"></span>
+                            <br>
+                            Duel
+
+                        </div>
+
+
+                    </a>
+                </div>
+
+
             </div>
 
 
@@ -58,15 +79,15 @@
 
 
 
-                    <div class="col-xs-4">
-                        <p>{{king.name}}</p>
-                        <div class="col-xs-6">
+                    <div class="col-xs-4 rightCol">
+                        <p><b>{{king.name}}</b></p>
+                        <div class="col-xs-6" style="text-align: left">
                             Games
                         </div>
                         <div class="col-xs-6">
                             Score
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-6" style="text-align: center">
                             {{highScore.gamesCount}}
                         </div>
                         <div class="col-xs-6">

@@ -1,8 +1,10 @@
 <template name="arenaranking">
   <div id="view-arenaranking" class="panel panel-default">
 
-    <div class="row kingRow">
-      <div class="col-xs-4 col-xs-offset-4 kingImage">{IMAGE OF KING}</div>
+    <div class="row kingRow" style="padding-top: 5px;text-align: center">
+        <div class="col-xs-6" style="height: 100%"> <img src="/images/icons/crown33.png" style="height: 60%"><br><b>{{king.name}}</b></div>
+
+        <div class="col-xs-6 kingImage"><img class='profilePic' src="/images/profiles/{{king.picture}}"></div>
     </div>
 
     <div class="row">
@@ -12,9 +14,9 @@
     <div class="panel-heading">
       <div class="row">
         <div class="col-xs-1">#</div>
-        <div class="col-xs-7">Player</div>
+        <div class="col-xs-5">Player</div>
         <div class="col-xs-2">Score</div>
-        <div class="col-xs-2">Played</div>
+        <div class="col-xs-3 right">Played</div>
       </div>
     </div>
 
@@ -22,9 +24,9 @@
       {{#each sortedRanking arena}}
         <div class="row tableRow line-separator {{isActiveClassEquals currentUser._id userId}}">
           <div class="col-xs-1 right">{{incremented @index}}</div>
-          <div class="col-xs-7">{{resolveUser this.userId}}</div>
+          <div class="col-xs-5">{{resolveUser this.userId}}</div>
           <div class="col-xs-2 right">{{this.points}}</div>
-          <div class="col-xs-2 right">{{this.gamesCount}}</div>
+          <div class="col-xs-3 right">{{this.gamesCount}}</div>
         </div>
       {{/each}}
     </div>
