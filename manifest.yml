@@ -1,0 +1,11 @@
+applications:
+- memory: 512MB
+  domain: mybluemix.net
+  path: .
+  buildpack: https://github.com/bancha001/bluemix-buildpack-meteor
+  host: armageddon
+  name: armageddon
+  disk: 512M
+  services:
+    - MongoLab-1l
+  instances: 1
