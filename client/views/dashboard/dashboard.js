@@ -85,6 +85,10 @@ Template.dashboard.helpers({
     },
     closest:function(){
         return Session.get('closest');
+    },
+
+    randomArena: function() {
+        return dbArena.findOne()._id;
     }
 });
 
